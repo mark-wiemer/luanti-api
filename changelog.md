@@ -17,7 +17,7 @@ Initial features:
 
 - Exports `core` namespace with a few functions documented in the API
 
-Changes from [@repcomm/mt-api@c8e54b1](https://github.com/RepComm/mt-api/tree/c8e54b16c49e350093228b1223210f206621f252):
+Changes from [@repcomm/mt-api@c8e54b1](https://github.com/RepComm/mt-api/tree/c8e54b1):
 
 - Rename from Minetest to Luanti
   - Change Mt* to Lt*
