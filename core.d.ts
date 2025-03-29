@@ -48,7 +48,7 @@ export interface ChatCommandDef {
 /** https://api.luanti.org/core-namespace-reference/ */
 export interface LuantiGlobal {
   // #region Utilities
-  // https://api.luanti.org/core-namespace-reference/#utilities
+  //* https://api.luanti.org/core-namespace-reference/#utilities
   get_current_modname(this: void): string;
   get_modpath(this: void, modname: string): string;
   // todo get_modnames
@@ -79,30 +79,22 @@ export interface LuantiGlobal {
   // #endregion Utilities
 
   // #region Logging
-  // https://api.luanti.org/core-namespace-reference/#logging
+  //* https://api.luanti.org/core-namespace-reference/#logging
   // todo debug
   // todo log
   // #endregion Logging
 
   // #region Registration functions
-  // https://api.luanti.org/core-namespace-reference/#registration-functions
+  //* https://api.luanti.org/core-namespace-reference/#registration-functions
   // #region Environment
-  // https://api.luanti.org/core-namespace-reference/#environment
-  /** https://api.luanti.org/core-namespace-reference/#environment */
+  //* https://api.luanti.org/core-namespace-reference/#environment
   register_node<NodeBoxType extends LtNodeBoxType>(
     this: void,
     name: string,
     itemDef: LtNodeDef<NodeBoxType>
   ): void;
-  /** https://api.luanti.org/core-namespace-reference/#environment */
   register_craftitem(this: void, name: string, itemDef: LtItemDef): void;
-  /** https://api.luanti.org/core-namespace-reference/#environment */
   register_tool(this: void, name: string, itemDef: LtItemDef): void;
-  /**
-   * https://api.luanti.org/core-namespace-reference/#environment
-   *
-   * Override an item definition. Item must already be defined.
-   */
   override_item(
     this: void,
     name: string,
@@ -114,7 +106,6 @@ export interface LuantiGlobal {
   register_entity(this: void, name: string, enDef: Partial<LtEntityDef>): void;
   // todo register_abm
   // todo register_lbm
-  /** https://api.luanti.org/aliases/ */
   register_alias(this: void, alias: string, originalName: string): void;
   // todo register_alias_force
   // todo register_ore
@@ -126,7 +117,6 @@ export interface LuantiGlobal {
   // todo clear_registered_decorations
   // todo clear_registered_ores
   // todo clear_registered_schematics
-
   //* Not currently included in API docs
   /**
    * Not recommended for general use. Instead, try:
@@ -139,40 +129,83 @@ export interface LuantiGlobal {
   // #endregion Environment
 
   // #region Gameplay
-  // https://api.luanti.org/core-namespace-reference/#gameplay
+  //* https://api.luanti.org/core-namespace-reference/#gameplay
   register_craft<K extends keyof CraftRecipeTypeMap>(
     this: void,
     recipe: CraftRecipeTypeMap[K]
   ): void;
   clear_craft(this: void, recipe: CraftRecipeCommon<any>): void;
+  register_chatcommand(this: void, name: string, cmd: ChatCommandDef): void;
+  // todo override_chatcommand
+  unregister_chatcommand(this: void, name: string): void;
+  register_privilege(
+    this: void,
+    name: string,
+    cfg: string | { description: string; give_to_singleplayer: boolean }
+  ): void;
+  // todo register_authentication_handler
   // #endregion Gameplay
   // #endregion registration functions
 
+  // #region Global callback registration functions
+  //* https://api.luanti.org/core-namespace-reference/#global-callback-registration-functions
+  register_globalstep(
+    this: void,
+    cb: (this: void, dtime: number) => void
+  ): void;
+  // todo register_on_mods_loaded
+  register_on_shutdown(this: void, cb: () => void): void;
+  // todo register_on_placenode
+  // todo register_on_dignode
+  // todo register_on_punchnode
+  // todo register_on_generated
+  // todo register_on_newplayer
+  // todo register_on_punchplayer
+  // todo register_on_rightclickplayer
+  // todo register_on_player_hpchange
+  // todo register_on_dieplayer
+  // todo register_on_respawnplayer
+  // todo register_on_prejoinplayer
   register_on_joinplayer(this: void, cb: LtPlayerJoinCallback): void;
   register_on_leaveplayer(this: void, cb: LtPlayerLeaveCallback): void;
-  register_on_shutdown(this: void, cb: () => void): void;
+  // todo register_on_authplayer
+  // todo register_on_auth_fail
+  // todo register_on_cheat
+  // todo register_on_chat_message
+  // todo register_on_chatcommand
+  // todo register_on_player_receive_fields
+  // todo register_on_craft
+  // todo register_craft_predict
+  // todo register_allow_player_inventory_action
+  // todo register_on_player_inventory_action
+  // todo register_on_protection_violation
+  // todo register_on_item_eat
+  // todo register_on_item_pickup
+  // todo register_on_priv_grant
+  // todo register_on_priv_revoke
+  // todo register_can_bypass_userlimit
+  // todo register_on_modchannel_message
+  // todo register_on_liquid_transformed
+  // todo register_on_mapblocks_changed
+  // #endregrion Global callback registration functions
+
+  // todo https://api.luanti.org/core-namespace-reference/#setting-related and below
+
+  //* Unorganized definitions
   chat_send_player(this: void, playerName: string, message: string): void;
   chat_send_all(this: void, message: string): void;
-
   request_insecure_environment(this: void): LtInsecEnv;
-
   add_entity(
     this: void,
     pos: LtVec3,
     name: string,
     staticdata?: LtEntityStaticData
   ): LtObjRef;
-  register_globalstep(
-    this: void,
-    cb: (this: void, dtime: number) => void
-  ): void;
   get_player_by_name(this: void, name: string): LtPlayer | undefined;
   get_node_or_nil(this: void, pos: LtVec3): LtNode | undefined;
   get_node(this: void, pos: LtVec3): LtNode;
-
   after(this: void, time: number, func: () => void): void;
   get_gametime(this: void): number;
-
   raycast(
     this: void,
     from: LtVec3,
@@ -180,20 +213,11 @@ export interface LuantiGlobal {
     objects?: boolean,
     liquids?: boolean
   ): Raycast;
-
   luaentities: { [key: string]: LtObjRef };
   object_refs: { [key: string]: LtObjRef };
-
   add_particle(this: void, partDef: LtParticleDef): number;
   add_particlespawner(this: void, partSpawnDef: LtParticleSpawnerDef): number;
   delete_particlespawner(this: void, id: number, playername?: string): void;
-  unregister_chatcommand(this: void, name: string): void;
-  register_privilege(
-    this: void,
-    name: string,
-    cfg: string | { description: string; give_to_singleplayer: boolean }
-  ): void;
-  register_chatcommand(this: void, name: string, cmd: ChatCommandDef): void;
   get_objects_inside_radius(
     this: void,
     pos: LtVec3,
