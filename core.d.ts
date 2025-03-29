@@ -56,6 +56,15 @@ export interface LuantiGlobal {
   get_modpath(this: void, modname: string): string;
   get_current_modname(this: void): string;
 
+  /** https://api.luanti.org/aliases/ */
+  register_alias(this: void, alias: string, originalName: string): void;
+  /**
+   * Used for registering the hand. Other objects should use:
+   * - `register_craftitem`
+   * - `register_tool`
+   * - `register_node`
+   */
+  register_item(this: void, name: string, itemDef: LtItemDef): void;
   register_craftitem(this: void, name: string, itemDef: LtItemDef): void;
   register_tool(this: void, name: string, itemDef: LtItemDef): void;
   register_node<NodeBoxType extends LtNodeBoxType>(
