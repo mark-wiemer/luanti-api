@@ -1,6 +1,6 @@
 {
   "name": "@mark-wiemer/luanti-api",
-  "main": "./mod.d.ts",
+  "main": "./index.d.ts",
   "version": "0.1.0",
   "description": "Luanti API TypeScript definitions for TypeScriptToLua",
   "scripts": {

@@ -1,4 +1,4 @@
-import "./mod";
+import ".";
 
 core.register_node("test", {
   description: "test block",
