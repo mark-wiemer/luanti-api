@@ -1,27 +1,26 @@
 {
-  "name": "@repcomm/mt-api",
+  "name": "@mark-wiemer/luanti-api",
   "main": "./mod.d.ts",
-  
-  "version": "1.0.12",
-  "description": "minetest typescript definitions",
+  "version": "0.1.0",
+  "description": "Luanti API TypeScript definitions for TypeScriptToLua",
   "scripts": {
     "pub": "npm publish --access public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RepComm/mt-api.git"
+    "url": "git+https://github.com/mark-wiemer/luanti-api.git"
   },
   "keywords": [
     "minetest",
     "typescript",
     "api"
   ],
-  "author": "Jon Crowder",
-  "license": "Unlicense",
+  "author": "Mark Wiemer",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RepComm/mt-api/issues"
+    "url": "https://github.com/mark-wiemer/luanti-api/issues"
   },
-  "homepage": "https://github.com/RepComm/mt-api#readme",
+  "homepage": "https://github.com/mark-wiemer/luanti-api#readme",
   "devDependencies": {
     "typescript-to-lua": "^1.14.0",
     "lua-types": "^2.13.1"
