@@ -88,14 +88,6 @@ export interface LuantiGlobal {
   // https://api.luanti.org/core-namespace-reference/#registration-functions
   // #region Environment
   // https://api.luanti.org/core-namespace-reference/#environment
-  /**
-   * Not recommended for general use. Instead, try:
-   * - `register_craftitem`
-   * - `register_tool`
-   * - `register_node`
-   * - `override_item`
-   */
-  register_item(this: void, name: string, itemDef: LtItemDef): void;
   /** https://api.luanti.org/core-namespace-reference/#environment */
   register_node<NodeBoxType extends LtNodeBoxType>(
     this: void,
@@ -118,8 +110,32 @@ export interface LuantiGlobal {
     /** Fields to set to `nil`. Cannot include "name" or "type". */
     delFields?: string[]
   ): void;
+  // todo unregister_item
+  register_entity(this: void, name: string, enDef: Partial<LtEntityDef>): void;
+  // todo register_abm
+  // todo register_lbm
   /** https://api.luanti.org/aliases/ */
   register_alias(this: void, alias: string, originalName: string): void;
+  // todo register_alias_force
+  // todo register_ore
+  // todo register_biome
+  // todo unregister_biome
+  // todo register_decoration
+  // todo register_schematic
+  // todo clear_registered_biomes
+  // todo clear_registered_decorations
+  // todo clear_registered_ores
+  // todo clear_registered_schematics
+
+  //* Not currently included in API docs
+  /**
+   * Not recommended for general use. Instead, try:
+   * - `register_craftitem`
+   * - `register_tool`
+   * - `register_node`
+   * - `override_item`
+   */
+  register_item(this: void, name: string, itemDef: LtItemDef): void;
   // #endregion Environment
 
   // #region Gameplay
@@ -146,7 +162,6 @@ export interface LuantiGlobal {
     name: string,
     staticdata?: LtEntityStaticData
   ): LtObjRef;
-  register_entity(this: void, name: string, enDef: Partial<LtEntityDef>): void;
   register_globalstep(
     this: void,
     cb: (this: void, dtime: number) => void
