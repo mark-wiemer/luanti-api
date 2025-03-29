@@ -1,5 +1,4 @@
 import type { LtToolCapabilities } from "./item";
-import { LtNodeBox } from "./node";
 import type { LtObjRef, LtObjProperties } from "./object";
 import type { LtVec3 } from "./vector";
 
