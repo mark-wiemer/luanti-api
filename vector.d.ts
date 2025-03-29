@@ -1,8 +1,8 @@
-export interface MtVec2 {
+export interface LtVec2 {
   x: number;
   y: number;
 }
 
-export interface MtVec3 extends MtVec2 {
+export interface LtVec3 extends LtVec2 {
   z: number;
 }

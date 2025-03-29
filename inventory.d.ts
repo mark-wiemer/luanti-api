@@ -1,6 +1,6 @@
-import { MtItemStack } from "./item";
+import { LtItemStack } from "./item";
 
-export interface MtInvRef {
+export interface LtInvRef {
   /**return true if list is empty*/
   is_empty(listname: string): boolean;
 
@@ -18,16 +18,16 @@ export interface MtInvRef {
   set_width(listname: string, width: number): void;
 
   /**get a copy of stack index i in list*/
-  get_stack(listname: string, i: number): MtItemStack;
+  get_stack(listname: string, i: number): LtItemStack;
 
   /**copy stack to index i in list*/
-  set_stack(listname: string, i: number, stack: MtItemStack): MtItemStack;
+  set_stack(listname: string, i: number, stack: LtItemStack): LtItemStack;
 
   /**return full list*/
-  get_list(listname: string): MtItemStack[];
+  get_list(listname: string): LtItemStack[];
 
   /**set full list (size will not change)*/
-  set_list(listname: string, list: MtItemStack[]): void;
+  set_list(listname: string, list: LtItemStack[]): void;
 
   /**returns list of inventory lists*/
   get_lists(): any;
@@ -36,13 +36,13 @@ export interface MtInvRef {
   set_lists(lists: any): void;
 
   /**add item somewhere in list, returns leftover ItemStack*/
-  add_item(listname: string, stack: MtItemStack): MtItemStack;
+  add_item(listname: string, stack: LtItemStack): LtItemStack;
 
   /**returns true if the stack of items can be fully added to the list*/
-  room_for_item(listname: string, stack: MtItemStack): boolean;
+  room_for_item(listname: string, stack: LtItemStack): boolean;
 
   /**returns true if the stack of items can be fully taken from the list*/
-  contains_item(listname: string, stack: MtItemStack): boolean;
+  contains_item(listname: string, stack: LtItemStack): boolean;
 
   /**take as many items as specified from the list
    * returns the items that were actually removed (as an ItemStack)
@@ -50,9 +50,9 @@ export interface MtInvRef {
    * attempting to remove a specific unique item
    * this way will likely remove the wrong one
    * use set_stack with an empty ItemStack instead*/
-  remove_item(listname: string, stack: MtItemStack): MtItemStack;
+  remove_item(listname: string, stack: LtItemStack): LtItemStack;
 
-  /**returns a location compatible to minetest.get_inventory(location)
+  /**returns a location compatible to core.get_inventory(location)
    * returns {type="undefined"} in case location is not known
    */
   get_location(): any;

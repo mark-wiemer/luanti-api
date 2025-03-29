@@ -1,9 +1,9 @@
-import type { MtColorSpec } from "./color";
-import { MtInvRef } from "./inventory";
-import type { MtCollisionBox } from "./node";
-import type { MtVec2, MtVec3 } from "./vector";
+import type { LtColorSpec } from "./color";
+import { LtInvRef } from "./inventory";
+import type { LtCollisionBox } from "./node";
+import type { LtVec2, LtVec3 } from "./vector";
 
-export interface MtPressedKeys {
+export interface LtPressedKeys {
   jump: boolean;
   right: boolean;
   left: boolean;
@@ -15,7 +15,7 @@ export interface MtPressedKeys {
   up: boolean;
 }
 
-export interface MtPhysicsOverride {
+export interface LtPhysicsOverride {
   speed: number;
   jump: number;
   gravity: number;
@@ -24,19 +24,19 @@ export interface MtPhysicsOverride {
   new_move: boolean;
 }
 
-export interface MtObjRef {
-  object: MtObjRef;
+export interface LtObjRef {
+  object: LtObjRef;
   name: string;
 
-  set_bone_position(bone: string, position: MtVec3, rotation: MtVec3): void;
-  get_bone_position(bone: string): [MtVec3, MtVec3];
-  get_pos(): MtVec3;
-  set_pos(v: MtVec3): void;
+  set_bone_position(bone: string, position: LtVec3, rotation: LtVec3): void;
+  get_bone_position(bone: string): [LtVec3, LtVec3];
+  get_pos(): LtVec3;
+  set_pos(v: LtVec3): void;
   get_player_name(): string;
   is_player(): boolean;
   /**@deprecated: use get_velocity()*/
-  get_player_velocity(): MtVec3 | undefined;
-  get_look_dir(): MtVec3;
+  get_player_velocity(): LtVec3 | undefined;
+  get_look_dir(): LtVec3;
   get_look_vertical(): number;
   get_look_horizontal(): number;
   set_look_vertical(rads: number): void;
@@ -45,42 +45,42 @@ export interface MtObjRef {
   set_breath(b: number): void;
   set_attribute(k: string, v: string): void;
   get_attribute(k: string): string;
-  get_player_control(): MtPressedKeys;
-  set_physics_override(config: MtPhysicsOverride): void;
-  get_physics_override(): MtPhysicsOverride;
+  get_player_control(): LtPressedKeys;
+  set_physics_override(config: LtPhysicsOverride): void;
+  get_physics_override(): LtPhysicsOverride;
   set_local_animation(
-    standIdle: MtVec2,
-    walk: MtVec2,
-    dig: MtVec2,
-    walkDig: MtVec2,
+    standIdle: LtVec2,
+    walk: LtVec2,
+    dig: LtVec2,
+    walkDig: LtVec2,
     frame_speed: number
   ): void;
-  get_local_animation(): [MtVec2, MtVec2, MtVec2, MtVec2, number];
+  get_local_animation(): [LtVec2, LtVec2, LtVec2, LtVec2, number];
   /**Third person max values: {x=-10/10,y=-10,15,z=-5/5}*/
-  set_eye_offset(fp: MtVec3, tp: MtVec3): void;
-  get_eye_offsets(): [MtVec3, MtVec3];
+  set_eye_offset(fp: LtVec3, tp: LtVec3): void;
+  get_eye_offsets(): [LtVec3, LtVec3];
 
   set_attach(
-    parent: MtObjRef,
+    parent: LtObjRef,
     bone?: string,
-    position?: MtVec3,
-    rotation?: MtVec3
+    position?: LtVec3,
+    rotation?: LtVec3
   ): void;
-  get_attach(): LuaMultiReturn<[MtObjRef, string, MtVec3, MtVec3]>;
+  get_attach(): LuaMultiReturn<[LtObjRef, string, LtVec3, LtVec3]>;
   set_detach(): void;
 
   remove(): void;
 
-  set_velocity(v: MtVec3): void;
-  get_velocity(): MtVec3;
-  set_acceleration(a: MtVec3): void;
-  get_acceleration(): MtVec3;
+  set_velocity(v: LtVec3): void;
+  get_velocity(): LtVec3;
+  set_acceleration(a: LtVec3): void;
+  get_acceleration(): LtVec3;
   set_yaw(radians: number): void;
   get_yaw(): number;
   set_texture_mod(mod: string): void;
   get_texture_mod(): string;
   set_sprite(
-    p: MtVec2,
+    p: LtVec2,
     num_frames: number,
     framelength: number,
     select_horiz_by_yawpitch: boolean
@@ -88,25 +88,25 @@ export interface MtObjRef {
   //Select sprite from spritesheet with optional animation and DM-style texture selection based on yaw relative to camera
   /**@deprecated: Will be removed in a future version - use .name*/
   get_entity_name(): string;
-  get_luaentity(): MtObjRef;
+  get_luaentity(): LtObjRef;
 
-  get_inventory(): MtInvRef;
+  get_inventory(): LtInvRef;
 }
 
-export interface MtObjProperties {
+export interface LtObjProperties {
   hp_max: number;
   physical: boolean;
   //collide with other objects if physical=true
   collide_with_objects: boolean;
   weight: number;
-  collisionbox: MtCollisionBox;
+  collisionbox: LtCollisionBox;
   visual: "cube" | "sprite" | "upright_sprite" | "mesh" | "wielditem";
-  visual_size: MtVec2;
+  visual_size: LtVec2;
   mesh: string;
   textures: string | Array<string>;
   colors: string | Array<string>;
-  spritediv: MtVec2;
-  initial_sprite_basepos: MtVec2;
+  spritediv: LtVec2;
+  initial_sprite_basepos: LtVec2;
   is_visible: boolean;
   makes_footstep_sound: boolean;
   automatic_rotate: boolean;
@@ -120,7 +120,7 @@ export interface MtObjProperties {
   backface_culling: boolean;
   /**by default empty, for players their name is shown if empty*/
   nametag: string;
-  nametag_color: MtColorSpec;
+  nametag_color: LtColorSpec;
   /**by default empty, text to be shown when pointed at object*/
   infotext: string;
 }

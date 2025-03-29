@@ -1,54 +1,54 @@
-import type { MtToolCapabilities } from "./item";
-import { MtNodeBox } from "./node";
-import type { MtObjRef, MtObjProperties } from "./object";
-import type { MtVec3 } from "./vector";
+import type { LtToolCapabilities } from "./item";
+import { LtNodeBox } from "./node";
+import type { LtObjRef, LtObjProperties } from "./object";
+import type { LtVec3 } from "./vector";
 
-export interface MtPointedThing {
+export interface LtPointedThing {
   type: "nothing" | "node" | "object";
-  under?: MtVec3;
-  above?: MtVec3;
-  ref?: MtObjRef;
+  under?: LtVec3;
+  above?: LtVec3;
+  ref?: LtObjRef;
 }
 
-export type MtEntityStaticData = string;
+export type LtEntityStaticData = string;
 
-export interface MtEntityOnActivate {
-  (this: MtObjRef, staticdata: MtEntityStaticData, dtime_s: number): void;
+export interface LtEntityOnActivate {
+  (this: LtObjRef, staticdata: LtEntityStaticData, dtime_s: number): void;
 }
-export interface MtEntityOnStep {
-  (this: MtObjRef, dtime: number): void;
+export interface LtEntityOnStep {
+  (this: LtObjRef, dtime: number): void;
 }
-export interface MtEntityOnPunch {
+export interface LtEntityOnPunch {
   (
-    this: MtObjRef,
-    puncher: MtObjRef | undefined,
+    this: LtObjRef,
+    puncher: LtObjRef | undefined,
     time_from_last_punch: number,
-    tool_capabilities: MtToolCapabilities,
-    dir: MtVec3
+    tool_capabilities: LtToolCapabilities,
+    dir: LtVec3
   ): void;
 }
-export interface MtEntityOnRightClick {
-  (this: MtObjRef, clicker: MtObjRef | undefined): void;
+export interface LtEntityOnRightClick {
+  (this: LtObjRef, clicker: LtObjRef | undefined): void;
 }
-export interface MtEntityGetStaticDataCallback {
-  (this: MtObjRef): MtEntityStaticData;
+export interface LtEntityGetStaticDataCallback {
+  (this: LtObjRef): LtEntityStaticData;
 }
 
-export interface MtEntityDef extends MtObjProperties {
+export interface LtEntityDef extends LtObjProperties {
   /** @deprecated
    * Everything in object properties is read directly from here
    */
-  initial_properties: Partial<MtObjProperties>;
+  initial_properties: Partial<LtObjProperties>;
 
-  on_activate: MtEntityOnActivate;
-  on_step: MtEntityOnStep;
-  on_punch: MtEntityOnPunch;
-  on_rightclick: MtEntityOnRightClick;
+  on_activate: LtEntityOnActivate;
+  on_step: LtEntityOnStep;
+  on_punch: LtEntityOnPunch;
+  on_rightclick: LtEntityOnRightClick;
   /**
    * Called sometimes; the string returned is passed to on_activate when
    * the entity is re-activated from static state
    */
-  get_staticdata: MtEntityGetStaticDataCallback;
+  get_staticdata: LtEntityGetStaticDataCallback;
 
   [_custom: string]: any;
 

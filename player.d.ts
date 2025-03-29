@@ -1,13 +1,13 @@
-import type { MtObjRef } from "./object";
+import type { LtObjRef } from "./object";
 
-export type MtPlayer = MtObjRef;
+export type LtPlayer = LtObjRef;
 
-export interface MtPlayerJoinCallback {
-  (this: void, player: MtPlayer): void;
+export interface LtPlayerJoinCallback {
+  (this: void, player: LtPlayer): void;
 }
 
-export interface MtPlayerLeaveCallback {
-  (this: void, player: MtPlayer, timedout: boolean): void;
+export interface LtPlayerLeaveCallback {
+  (this: void, player: LtPlayer, timedout: boolean): void;
 }
 
 export interface PlayerAPI {}

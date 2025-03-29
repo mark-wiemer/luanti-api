@@ -1,13 +1,13 @@
-export type MtSimpleSoundSpec = string;
+export type LtSimpleSoundSpec = string;
 
-export interface MtSoundDefs {
-  [key: string]: MtSimpleSoundSpec;
+export interface LtSoundDefs {
+  [key: string]: LtSimpleSoundSpec;
   /**tools only*/
-  breaks: MtSimpleSoundSpec;
-  place: MtSimpleSoundSpec;
+  breaks: LtSimpleSoundSpec;
+  place: LtSimpleSoundSpec;
 
-  footstep: MtSimpleSoundSpec;
-  dig: MtSimpleSoundSpec;
-  dug: MtSimpleSoundSpec;
-  place_failed: MtSimpleSoundSpec;
+  footstep: LtSimpleSoundSpec;
+  dig: LtSimpleSoundSpec;
+  dug: LtSimpleSoundSpec;
+  place_failed: LtSimpleSoundSpec;
 }

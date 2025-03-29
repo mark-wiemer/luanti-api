@@ -1,12 +1,12 @@
-import { MtTileAnimDef, MtTileAnimTypeMap } from "./node";
-import { MtObjRef } from "./object";
-import { MtVec3 } from "./vector";
+import { LtTileAnimDef, LtTileAnimTypeMap } from "./node";
+import { LtObjRef } from "./object";
+import { LtVec3 } from "./vector";
 
-export interface MtParticleDef {
-  pos: MtVec3;
-  velocity: MtVec3;
+export interface LtParticleDef {
+  pos: LtVec3;
+  velocity: LtVec3;
   /**Spawn particle at pos with velocity and acceleration*/
-  acceleration: MtVec3;
+  acceleration: LtVec3;
   /**Disappears after expirationtime seconds*/
   expirationtime: number;
   size: number;
@@ -24,21 +24,21 @@ export interface MtParticleDef {
   playername?: string;
 
   /**optional, specifies how to animate the particle texture*/
-  animation?: MtTileAnimDef<keyof MtTileAnimTypeMap>;
+  animation?: LtTileAnimDef<keyof LtTileAnimTypeMap>;
   /**optional, specify particle self-luminescence in darkness*/
   glow?: number;
 }
 
-export interface MtParticleSpawnerDef {
+export interface LtParticleSpawnerDef {
   amount: number;
   /**If time is 0 has infinite lifespan and spawns the amount on a per-second base*/
   time: number;
-  minpos: MtVec3;
-  maxpos: MtVec3;
-  minvel: MtVec3;
-  maxvel: MtVec3;
-  minacc: MtVec3;
-  maxacc: MtVec3;
+  minpos: LtVec3;
+  maxpos: LtVec3;
+  minvel: LtVec3;
+  maxvel: LtVec3;
+  minacc: LtVec3;
+  maxacc: LtVec3;
   minexptime: number;
   maxexptime: number;
   minsize: number;
@@ -52,7 +52,7 @@ export interface MtParticleSpawnerDef {
   collision_removal?: boolean;
 
   /**attached: if defined, particle positions, velocities and accelerations*/
-  attached: MtObjRef;
+  attached: LtObjRef;
   /**are relative to this object's position and yaw*/
   vertical: boolean;
   texture: string;

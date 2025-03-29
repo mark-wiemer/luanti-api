@@ -1,6 +1,6 @@
 # Luanti API
 
-Type definitions for using the Luanti API via TypeScriptToLua
+Type definitions for using the Luanti ([formerly Minetest](https://blog.luanti.org/2024/10/13/Introducing-Our-New-Name/)) API via TypeScriptToLua
 
 ## Usage
 
@@ -21,9 +21,9 @@ The module declares the Luanti global the same way you'd use it in Lua
 You can also utilize the types it provides in your own code by importing them:
 
 ```ts
-import type { MtVec3 } from "@mark-wiemer/luanti-api";
+import type { LtVec3 } from "@mark-wiemer/luanti-api";
 
-let myVec: MtVec3 = { x: 0, y: 0, z: 0 };
+let myVec: LtVec3 = { x: 0, y: 0, z: 0 };
 ```
 
 `core` is the only supported namespace alias, `minetest` will not work:
@@ -64,9 +64,9 @@ In TypeScript this is handled by providing a `this` definition:
 
 ```ts
 interface LuantiGlobal {
-  register_on_joinplayer (this: void, cb: MtPlayerJoinCallback): void;
+  register_on_joinplayer (this: void, cb: LtPlayerJoinCallback): void;
 }
-declare global minetest: LuantiGlobal;
+declare global core: LuantiGlobal;
 ```
 
 Because
@@ -79,7 +79,7 @@ TypeScript calls to `core.register_on_joinplayer()` will properly output:
 `core.register_on_joinplayer()` in lua
 
 Without providing `this: void`, this would generate:
-`minetest:register_on_joinplayer()` as TypeScriptToLua assumes we want to provide a `self` reference as first argument
+`core:register_on_joinplayer()` as TypeScriptToLua assumes we want to provide a `self` reference as first argument
 
 On the flip-side:
 

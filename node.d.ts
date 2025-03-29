@@ -1,73 +1,73 @@
-import type { MtColorSpec } from "./color";
-import type { MtPointedThing } from "./entity";
-import { MtInvRef } from "./inventory";
-import type { MetaDataRef, MtItemDef, MtItemStack } from "./item";
-import type { MtPlayer } from "./player";
-import type { MtSoundDefs } from "./sound";
-import type { MtVec3 } from "./vector";
+import type { LtColorSpec } from "./color";
+import type { LtPointedThing } from "./entity";
+import { LtInvRef } from "./inventory";
+import type { MetaDataRef, LtItemDef, LtItemStack } from "./item";
+import type { LtPlayer } from "./player";
+import type { LtSoundDefs } from "./sound";
+import type { LtVec3 } from "./vector";
 
-export type MtNodeName = string;
+export type LtNodeName = string;
 
-export type MtNodePlacementPrediction = string;
+export type LtNodePlacementPrediction = string;
 
 export interface OnPlaceCallback {
   (
     this: void,
-    itemstack: MtItemStack,
-    placer: MtPlayer | undefined,
-    pointed_thing: MtPointedThing
-  ): MtItemStack | undefined;
+    itemstack: LtItemStack,
+    placer: LtPlayer | undefined,
+    pointed_thing: LtPointedThing
+  ): LtItemStack | undefined;
 }
 
 export interface OnDropCallback {
   (
     this: void,
-    itemstack: MtItemStack,
-    dropper: MtPlayer | undefined,
-    pos: MtVec3
+    itemstack: LtItemStack,
+    dropper: LtPlayer | undefined,
+    pos: LtVec3
   ): void;
 }
 
 export interface OnUseCallback {
   (
     this: void,
-    itemstack: MtItemStack,
-    user: MtPlayer | undefined,
-    pointed_thing: MtPointedThing
-  ): MtItemStack | undefined;
+    itemstack: LtItemStack,
+    user: LtPlayer | undefined,
+    pointed_thing: LtPointedThing
+  ): LtItemStack | undefined;
 }
 
-export interface MtNode {
-  name: MtNodeName;
+export interface LtNode {
+  name: LtNodeName;
   param1: number;
   param2: number;
 }
 
-export interface MtDigParams {}
+export interface LtDigParams {}
 
 export interface AfterUseCallback {
   (
     this: void,
-    itemstack: MtItemStack,
-    user: MtPlayer | undefined,
-    node: MtNode,
-    digparams: MtDigParams
+    itemstack: LtItemStack,
+    user: LtPlayer | undefined,
+    node: LtNode,
+    digparams: LtDigParams
   ): void;
 }
 
-export type MtCollisionBox = Array<number>;
+export type LtCollisionBox = Array<number>;
 
 export interface MTABMAction {
   (
     this: void,
-    pos: MtVec3,
-    node: MtNode,
+    pos: LtVec3,
+    node: LtNode,
     active_object_count: number,
     active_object_count_wider: number
   ): void;
 }
 
-export interface MtABMDef {
+export interface LtABMDef {
   /**
    * Descriptive label for profiling purposes (optional).
    * Definitions with identical labels will be listed as one
@@ -98,11 +98,11 @@ export interface MtABMDef {
   action: MTABMAction;
 }
 
-export interface MtLBMAction {
-  (this: void, pos: MtVec3, node: MtNode): void;
+export interface LtLBMAction {
+  (this: void, pos: LtVec3, node: LtNode): void;
 }
 
-export interface MtLBMDef {
+export interface LtLBMDef {
   /**
    * Descriptive label for profiling purposes (optional).
    * Definitions with identical labels will be listed as one.
@@ -122,11 +122,11 @@ export interface MtLBMDef {
    * introduced to the world
    */
   run_at_every_load: boolean;
-  action: MtLBMAction;
+  action: LtLBMAction;
 }
 
-export interface MtTileAnimVerticalFramesDef
-  extends MtTileAnimDef<"vertical_frames"> {
+export interface LtTileAnimVerticalFramesDef
+  extends LtTileAnimDef<"vertical_frames"> {
   /**Width of a frame in pixels*/
   aspect_w: number;
   /**Height of a frame in pixels*/
@@ -134,7 +134,7 @@ export interface MtTileAnimVerticalFramesDef
   /**Specify full loop length*/
   length: number;
 }
-export interface MtTileAnimSheet2dDef extends MtTileAnimDef<"sheet_2d"> {
+export interface LtTileAnimSheet2dDef extends LtTileAnimDef<"sheet_2d"> {
   /**width in num of frames*/
   frames_w: number;
   /**height in num of frames*/
@@ -142,240 +142,240 @@ export interface MtTileAnimSheet2dDef extends MtTileAnimDef<"sheet_2d"> {
   /**length of single frame*/
   frame_length: number;
 }
-export interface MtTileAnimTypeMap {
-  vertical_frames: MtTileAnimVerticalFramesDef;
-  sheet_2d: MtTileAnimSheet2dDef;
+export interface LtTileAnimTypeMap {
+  vertical_frames: LtTileAnimVerticalFramesDef;
+  sheet_2d: LtTileAnimSheet2dDef;
 }
 
-export interface MtTileAnimDef<T extends keyof MtTileAnimTypeMap> {
+export interface LtTileAnimDef<T extends keyof LtTileAnimTypeMap> {
   type: T;
 }
 
-export interface MtTileDef<K extends keyof MtTileAnimTypeMap> {
+export interface LtTileDef<K extends keyof LtTileAnimTypeMap> {
   /**texture file name*/
   name: string;
-  animation?: MtTileAnimTypeMap[K];
+  animation?: LtTileAnimTypeMap[K];
   backface_culling?: boolean;
   tileable_vertical?: boolean;
   tileable_horizontal?: boolean;
-  color?: MtColorSpec;
+  color?: LtColorSpec;
   /**@deprecated: use name instead*/
   image?: string;
 }
 
-export type MtNodeParamType = "none" | "light";
-export type MtNodeParamType2 = "facedir"; //TODO - see what is allowed
+export type LtNodeParamType = "none" | "light";
+export type LtNodeParamType2 = "facedir"; //TODO - see what is allowed
 
-export type MtNodeLiquidType = "none" | "source" | "flowing";
+export type LtNodeLiquidType = "none" | "source" | "flowing";
 
-export type MtNodeBoxType =
+export type LtNodeBoxType =
   | "regular"
   | "leveled"
   | "fixed"
   | "wallmounted"
   | "connected";
 
-export type MtNodeBoxData = Array<number>;
-export type MtNodeBoxesData = MtNodeBoxData | Array<MtNodeBoxData>;
+export type LtNodeBoxData = Array<number>;
+export type LtNodeBoxesData = LtNodeBoxData | Array<LtNodeBoxData>;
 
-export interface MtNodeBoxTypeMap {
-  regular: MtNodeBoxRegular;
-  leveled: MtNodeBoxLeveled;
-  fixed: MtNodeBoxFixed;
-  wallmounted: MtNodeBoxWallMounted;
-  connected: MtNodeBoxConnected;
+export interface LtNodeBoxTypeMap {
+  regular: LtNodeBoxRegular;
+  leveled: LtNodeBoxLeveled;
+  fixed: LtNodeBoxFixed;
+  wallmounted: LtNodeBoxWallMounted;
+  connected: LtNodeBoxConnected;
 }
 
-export interface MtNodeBox<T extends keyof MtNodeBoxTypeMap> {
+export interface LtNodeBox<T extends keyof LtNodeBoxTypeMap> {
   type: T; //TODO - finish
 }
-export interface MtNodeBoxRegular extends MtNodeBox<"regular"> {
+export interface LtNodeBoxRegular extends LtNodeBox<"regular"> {
   //TODO - lua_api not clear on this
 }
 /**TODO - lua_api not clear on this at all*/
-export interface MtNodeBoxLeveled extends MtNodeBox<"leveled"> {}
-export interface MtNodeBoxFixed extends MtNodeBox<"fixed"> {
-  fixed: MtNodeBoxesData;
+export interface LtNodeBoxLeveled extends LtNodeBox<"leveled"> {}
+export interface LtNodeBoxFixed extends LtNodeBox<"fixed"> {
+  fixed: LtNodeBoxesData;
 }
-export interface MtNodeBoxWallMounted extends MtNodeBox<"wallmounted"> {
-  wall_top: MtNodeBoxData;
-  wall_bottom: MtNodeBoxData;
-  wall_side: MtNodeBoxData;
+export interface LtNodeBoxWallMounted extends LtNodeBox<"wallmounted"> {
+  wall_top: LtNodeBoxData;
+  wall_bottom: LtNodeBoxData;
+  wall_side: LtNodeBoxData;
 }
-export interface MtNodeBoxConnected extends MtNodeBox<"connected"> {
-  fixed: MtNodeBoxesData;
-  connect_top?: MtNodeBoxesData;
-  connect_bottom?: MtNodeBoxesData;
-  connect_front?: MtNodeBoxesData;
-  connect_left?: MtNodeBoxesData;
-  connect_back?: MtNodeBoxesData;
-  connect_right?: MtNodeBoxesData;
-}
-
-export type MtNodeSide = "top" | "bottom" | "front" | "left" | "back" | "right";
-export type MtNodeSides = Array<MtNodeSide>;
-
-export interface MtNodeOnConstructCallback {
-  (this: void, pos: MtVec3): void;
-}
-export interface MtNodeOnDestructCallback {
-  (this: void, pos: MtVec3): void;
+export interface LtNodeBoxConnected extends LtNodeBox<"connected"> {
+  fixed: LtNodeBoxesData;
+  connect_top?: LtNodeBoxesData;
+  connect_bottom?: LtNodeBoxesData;
+  connect_front?: LtNodeBoxesData;
+  connect_left?: LtNodeBoxesData;
+  connect_back?: LtNodeBoxesData;
+  connect_right?: LtNodeBoxesData;
 }
 
-export interface MtNodeAfterDestructCallback {
-  (this: void, pos: MtVec3, oldnode: MtNode): void;
+export type LtNodeSide = "top" | "bottom" | "front" | "left" | "back" | "right";
+export type LtNodeSides = Array<LtNodeSide>;
+
+export interface LtNodeOnConstructCallback {
+  (this: void, pos: LtVec3): void;
+}
+export interface LtNodeOnDestructCallback {
+  (this: void, pos: LtVec3): void;
 }
 
-export interface MtNodeOnFloodCallback {
-  (this: void, pos: MtVec3, oldnode: MtNode, newnode: MtNode): void;
+export interface LtNodeAfterDestructCallback {
+  (this: void, pos: LtVec3, oldnode: LtNode): void;
 }
 
-export interface MtNodeOnPlaceCallback {
+export interface LtNodeOnFloodCallback {
+  (this: void, pos: LtVec3, oldnode: LtNode, newnode: LtNode): void;
+}
+
+export interface LtNodeOnPlaceCallback {
   (
     this: void,
-    pos: MtVec3,
-    placer: MtPlayer | undefined,
-    itemstack: MtItemStack,
-    pointed_thing: MtPointedThing
+    pos: LtVec3,
+    placer: LtPlayer | undefined,
+    itemstack: LtItemStack,
+    pointed_thing: LtPointedThing
   ): void;
 }
 
-export interface MtNodeMetaRef extends MetaDataRef {
-  get_inventory(): MtInvRef;
+export interface LtNodeMetaRef extends MetaDataRef {
+  get_inventory(): LtInvRef;
 }
 
-export interface MtNodeAfterDigCallback {
+export interface LtNodeAfterDigCallback {
   (
     this: void,
-    pos: MtVec3,
-    oldnode: MtNode,
-    oldmetadata: MtNodeMetaRef,
-    digger: MtPlayer | undefined
+    pos: LtVec3,
+    oldnode: LtNode,
+    oldmetadata: LtNodeMetaRef,
+    digger: LtPlayer | undefined
   ): void;
 }
 
-export interface MtNodeCanDigCallback {
-  (this: void, pos: MtVec3, player?: MtPlayer): boolean;
+export interface LtNodeCanDigCallback {
+  (this: void, pos: LtVec3, player?: LtPlayer): boolean;
 }
 
-export interface MtNodeOnPunchCallback {
+export interface LtNodeOnPunchCallback {
   (
     this: void,
-    pos: MtVec3,
-    node: MtNode,
-    puncher: MtPlayer | undefined,
-    pointed_thing: MtPointedThing
+    pos: LtVec3,
+    node: LtNode,
+    puncher: LtPlayer | undefined,
+    pointed_thing: LtPointedThing
   ): void;
 }
-export interface MtNodeOnRightClickCallback {
+export interface LtNodeOnRightClickCallback {
   (
     this: void,
-    pos: MtVec3,
-    node: MtNode,
-    clicker: MtPlayer | undefined,
-    itemstack: MtItemStack,
-    pointed_thing: MtPointedThing
+    pos: LtVec3,
+    node: LtNode,
+    clicker: LtPlayer | undefined,
+    itemstack: LtItemStack,
+    pointed_thing: LtPointedThing
   ): void;
 }
 
-export interface MtNodeOnDigCallback {
-  (this: void, pos: MtVec3, node: MtNode, digger: MtPlayer | undefined): void;
+export interface LtNodeOnDigCallback {
+  (this: void, pos: LtVec3, node: LtNode, digger: LtPlayer | undefined): void;
 }
 
-export interface MtNodeOnTimerCallback {
-  (this: void, pos: MtVec3, elapsed: number): void;
+export interface LtNodeOnTimerCallback {
+  (this: void, pos: LtVec3, elapsed: number): void;
 }
 
-export interface MtNodeFields {
+export interface LtNodeFields {
   //fields = { name1 = value1, name2 = value2, ...}
   [key: string]: string;
 }
 
-export interface MtNodeOnReceiveFields {
+export interface LtNodeOnReceiveFields {
   (
     this: void,
-    pos: MtVec3,
+    pos: LtVec3,
     formname: string,
-    fields: MtNodeFields,
-    sender: MtPlayer | undefined
+    fields: LtNodeFields,
+    sender: LtPlayer | undefined
   ): void;
 }
 
-export interface MtNodeAllowMetadataInventoryMoveCallback {
+export interface LtNodeAllowMetadataInventoryMoveCallback {
   (
     this: void,
-    pos: MtVec3,
+    pos: LtVec3,
     from_list: any,
     from_index: number,
     to_list: any,
     to_index: number,
     count: number,
-    player: MtPlayer | undefined
+    player: LtPlayer | undefined
   ): number;
 }
 
-export interface MtNodeAllowMetadataInventoryPutCallback {
+export interface LtNodeAllowMetadataInventoryPutCallback {
   (
     this: void,
-    pos: MtVec3,
+    pos: LtVec3,
     listname: string,
     index: number,
-    stack: MtItemStack,
-    player: MtPlayer | undefined
+    stack: LtItemStack,
+    player: LtPlayer | undefined
   ): boolean;
 }
 
-export interface MtNodeAllowMetadataInventoryTakeCallback {
+export interface LtNodeAllowMetadataInventoryTakeCallback {
   (
     this: void,
-    pos: MtVec3,
+    pos: LtVec3,
     listname: string,
     index: number,
-    stack: MtItemStack,
-    player: MtPlayer
+    stack: LtItemStack,
+    player: LtPlayer
   ): boolean;
 }
 
-export interface MtNodeOnMetadataInventoryMove {
+export interface LtNodeOnMetadataInventoryMove {
   (
     this: void,
-    pos: MtVec3,
+    pos: LtVec3,
     from_list: any,
     from_index: number,
     to_list: any,
     to_index: number,
     count: number,
-    player: MtPlayer | undefined
+    player: LtPlayer | undefined
   ): void;
 }
 
-export interface MtNodeOnMetadataInventoryPut {
+export interface LtNodeOnMetadataInventoryPut {
   (
     this: void,
-    pos: MtVec3,
+    pos: LtVec3,
     listname: string,
     index: number,
-    stack: MtItemStack,
-    player: MtPlayer | undefined
+    stack: LtItemStack,
+    player: LtPlayer | undefined
   ): void;
 }
 
-export interface MtNodeOnMetadataInventoryTake {
+export interface LtNodeOnMetadataInventoryTake {
   (
     this: void,
-    pos: MtVec3,
+    pos: LtVec3,
     listname: string,
     index: number,
-    stack: MtItemStack,
-    player: MtPlayer | undefined
+    stack: LtItemStack,
+    player: LtPlayer | undefined
   ): void;
 }
 
-export interface MtNodeOnBlast {
-  (this: void, pos: MtVec3, intensity: number): void;
+export interface LtNodeOnBlast {
+  (this: void, pos: LtVec3, intensity: number): void;
 }
 
-export interface MtNodeDropDef {
+export interface LtNodeDropDef {
   /**Maximum number of items to drop*/
   max_items: number;
 
@@ -388,7 +388,7 @@ export interface MtNodeDropDef {
   }>;
 }
 
-export type MtNodeDrawtype =
+export type LtNodeDrawtype =
   | "normal"
   | "airlike"
   | "liquid"
@@ -407,9 +407,9 @@ export type MtNodeDrawtype =
   | "nodebox"
   | "mesh";
 
-export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
-  extends MtItemDef {
-  drawtype?: MtNodeDrawtype;
+export interface LtNodeDef<NodeBoxType extends LtNodeBoxType>
+  extends LtItemDef {
+  drawtype?: LtNodeDrawtype;
   /**
    * Supported for drawtypes "plantlike", "signlike", "torchlike",
    * "firelike", "mesh".
@@ -421,7 +421,7 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
   /**Textures of node; +Y, -Y, +X, -X, +Z, -Z
    * List can be shortened to needed length
    */
-  tiles?: string[] | MtTileDef<keyof MtTileAnimTypeMap>[];
+  tiles?: string[] | LtTileDef<keyof LtTileAnimTypeMap>[];
   /**
    * Same as `tiles`, but these textures are drawn on top of the
    * base tiles.You can use this to colorize only specific parts of
@@ -429,19 +429,19 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
    * overlay is not drawn.Since such tiles are drawn twice, it
    * is not recommended to use overlays on very common nodes.
    */
-  overlay_tiles?: string[] | MtTileDef<keyof MtTileAnimTypeMap>[];
+  overlay_tiles?: string[] | LtTileDef<keyof LtTileAnimTypeMap>[];
 
   /**
    * Special textures of node; used rarely(old field name: special_materials)
    * List can be shortened to needed length
    */
-  special_tiles?: string[] | MtTileDef<keyof MtTileAnimTypeMap>[];
+  special_tiles?: string[] | LtTileDef<keyof LtTileAnimTypeMap>[];
   /**
    * The node's original color will be multiplied with this color.
    * If the node has a palette, then this setting only has an effect
    * in the inventory and on the wield item. ]]
    */
-  color?: MtColorSpec;
+  color?: LtColorSpec;
 
   /**Use texture's alpha channel*/
   use_texture_alpha?: boolean;
@@ -458,13 +458,13 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
    * If player is inside node, see "ColorSpec"
    * "green#0F"
    */
-  post_effect_color?: MtColorSpec;
+  post_effect_color?: LtColorSpec;
 
   /** paramtype = "light" allows light to propagate from or through the node with light value
    * falling by 1 per node.This line is essential for a light source node to spread its light
    */
-  paramtype?: MtNodeParamType;
-  paramtype2?: MtNodeParamType2;
+  paramtype?: LtNodeParamType;
+  paramtype2?: LtNodeParamType2;
 
   /**Force value for param2 when player places node*/
   place_param2?: boolean;
@@ -493,7 +493,7 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
   /**If true, liquids flow into and replace this node*/
   floodable?: boolean;
 
-  liquidtype?: MtNodeLiquidType;
+  liquidtype?: LtNodeLiquidType;
 
   /**Flowing version of source liquid*/
   liquid_alternative_flowing?: string;
@@ -520,15 +520,15 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
   drowning?: number;
   /**
    * Amount of light emitted by node.
-   * To set the maximum(currently 14), use the value 'minetest.LIGHT_MAX'.
-   * A value outside the range 0 to minetest.LIGHT_MAX causes undefined behavior
+   * To set the maximum(currently 14), use the value 'core.LIGHT_MAX'.
+   * A value outside the range 0 to core.LIGHT_MAX causes undefined behavior
    */
   light_source?: number;
 
   /**If player is inside node, this damage is caused*/
   damage_per_second?: number;
 
-  node_box?: MtNodeBoxTypeMap[keyof MtNodeBoxTypeMap];
+  node_box?: LtNodeBoxTypeMap[keyof LtNodeBoxTypeMap];
   /**
    * Used for nodebox nodes with the type == "connected"
    * Specifies to what neighboring nodes connections will be drawn
@@ -537,13 +537,13 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
   connects_to?: Array<string>;
 
   /**Tells connected nodebox nodes to connect only to these sides of this node*/
-  connect_sides?: MtNodeSides;
+  connect_sides?: LtNodeSides;
 
   mesh?: string;
 
   /**If drawtype "nodebox" is used and selection_box is nil, then node_box is used*/
-  selection_box?: MtNodeBoxTypeMap["fixed"]; //TODO - see if more types allowed
-  collision_box?: MtNodeBoxTypeMap["fixed"]; //TODO - see if more types allowed
+  selection_box?: LtNodeBoxTypeMap["fixed"]; //TODO - see if more types allowed
+  collision_box?: LtNodeBoxTypeMap["fixed"]; //TODO - see if more types allowed
 
   /**Support maps made in and before January 2012*/
   legacy_facedir_simple?: boolean;
@@ -551,10 +551,10 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
   /**Support maps made in and before January 2012*/
   legacy_wallmounted?: boolean;
 
-  sounds?: MtSoundDefs;
+  sounds?: LtSoundDefs;
 
   /**Name of dropped node when dug.Default is the node itself*/
-  drop?: string | MtNodeDropDef;
+  drop?: string | LtNodeDropDef;
 
   /**
    * Node constructor; called after adding node
@@ -562,19 +562,19 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
    * Not called for bulk node placement(i.e.schematics and VoxelManip)
    * default: nil
    */
-  on_construct?: MtNodeOnConstructCallback;
+  on_construct?: LtNodeOnConstructCallback;
 
   /**Node destructor; called before removing node
    * Not called for bulk node placement(i.e.schematics and VoxelManip)
    * default: nil
    */
-  on_destruct?: MtNodeOnDestructCallback;
+  on_destruct?: LtNodeOnDestructCallback;
 
   /**Node destructor; called after removing node
    * Not called for bulk node placement(i.e.schematics and VoxelManip)
    * default: nil
    */
-  after_destruct?: MtNodeAfterDestructCallback;
+  after_destruct?: LtNodeAfterDestructCallback;
 
   /**Called when a liquid(newnode) is about to flood oldnode, if
    * it has`floodable = true` in the nodedef.Not called for bulk
@@ -583,90 +583,90 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
    * most likely be called over and over again every liquid update
    * interval.Default: nil
    */
-  on_flood?: MtNodeOnFloodCallback;
+  on_flood?: LtNodeOnFloodCallback;
 
   /**Called after constructing node when node was placed using
-   * minetest.item_place_node / minetest.place_node
+   * core.item_place_node / core.place_node
    * If return true no item is taken from itemstack
    * default: nil
    */
-  after_place_node?: MtNodeOnPlaceCallback;
+  after_place_node?: LtNodeOnPlaceCallback;
 
   /**oldmetadata is in table format
    * Called after destructing node when node was dug using
-   * minetest.node_dig / minetest.dig_node
+   * core.node_dig / core.dig_node
    * default: nil
    */
-  after_dig_node?: MtNodeAfterDigCallback;
+  after_dig_node?: LtNodeAfterDigCallback;
 
   /**returns true if node can be dug, or false if not
    * default: nil
    */
-  can_dig?: MtNodeCanDigCallback;
+  can_dig?: LtNodeCanDigCallback;
 
-  /**default: minetest.node_punch
-   * By default: Calls minetest.register_on_punchnode callbacks
+  /**default: core.node_punch
+   * By default: Calls core.register_on_punchnode callbacks
    */
-  on_punch?: MtNodeOnPunchCallback;
+  on_punch?: LtNodeOnPunchCallback;
 
   /**default: nil
    * if defined, itemstack will hold clicker's wielded item
    * Shall return the leftover itemstack
    * Note: pointed_thing can be nil, if a mod calls this function
    */
-  on_rightclick?: MtNodeOnRightClickCallback;
+  on_rightclick?: LtNodeOnRightClickCallback;
 
-  /**default: minetest.node_dig
+  /**default: core.node_dig
    * By default: checks privileges, wears out tool and removes node
    */
-  on_dig?: MtNodeOnDigCallback;
+  on_dig?: LtNodeOnDigCallback;
 
   /**default: nil
-   * called by NodeTimers, see minetest.get_node_timer and NodeTimerRef
+   * called by NodeTimers, see core.get_node_timer and NodeTimerRef
    * elapsed is the total time passed since the timer was started
    * return true to run the timer for another cycle with the same timeout value
    */
-  on_timer?: MtNodeOnTimerCallback;
+  on_timer?: LtNodeOnTimerCallback;
 
   /**
    * Called when an UI form(e.g.sign text input) returns data
    * default: nil
    */
-  on_receive_fields?: MtNodeOnReceiveFields;
+  on_receive_fields?: LtNodeOnReceiveFields;
 
   /**
    * Called when a player wants to move items inside the inventory
    * Return value: number of items allowed to move
    */
-  allow_metadata_inventory_move?: MtNodeAllowMetadataInventoryMoveCallback;
+  allow_metadata_inventory_move?: LtNodeAllowMetadataInventoryMoveCallback;
 
   /**
    * Called when a player wants to put something into the inventory
    * Return value: number of items allowed to put
    * Return value: -1: Allow and don't modify item count in inventory
    */
-  allow_metadata_inventory_put?: MtNodeAllowMetadataInventoryPutCallback;
+  allow_metadata_inventory_put?: LtNodeAllowMetadataInventoryPutCallback;
 
   /**Called when a player wants to take something out of the inventory
    * Return value: number of items allowed to take
    * Return value: -1: Allow and don't modify item count in inventor
    */
-  allow_metadata_inventory_take?: MtNodeAllowMetadataInventoryTakeCallback;
+  allow_metadata_inventory_take?: LtNodeAllowMetadataInventoryTakeCallback;
 
-  on_metadata_inventory_move?: MtNodeOnMetadataInventoryMove;
+  on_metadata_inventory_move?: LtNodeOnMetadataInventoryMove;
 
-  on_metadata_inventory_put?: MtNodeOnMetadataInventoryPut;
+  on_metadata_inventory_put?: LtNodeOnMetadataInventoryPut;
 
   /**
    * Called after the actual action has happened, according to what was allowed.
    * No return value
    */
-  on_metadata_inventory_take?: MtNodeOnMetadataInventoryTake;
+  on_metadata_inventory_take?: LtNodeOnMetadataInventoryTake;
 
   /**
    * intensity: 1.0 = mid range of regular TNT
    * If defined, called when an explosion touches the node, instead of
    * removing the node
    */
-  on_blast?: MtNodeOnBlast;
+  on_blast?: LtNodeOnBlast;
 }

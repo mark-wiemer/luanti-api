@@ -1,19 +1,19 @@
-import type { MtColorSpec } from "./color";
-import { MtInvRef } from "./inventory";
+import type { LtColorSpec } from "./color";
+import { LtInvRef } from "./inventory";
 import type {
   AfterUseCallback,
-  MtNodeMetaRef,
-  MtNodeName,
-  MtNodePlacementPrediction,
+  LtNodeMetaRef,
+  LtNodeName,
+  LtNodePlacementPrediction,
   OnDropCallback,
   OnPlaceCallback,
   OnUseCallback,
 } from "./node";
-import type { MtSoundDefs } from "./sound";
-import type { MtVec3 } from "./vector";
+import type { LtSoundDefs } from "./sound";
+import type { LtVec3 } from "./vector";
 
 /** key = name, value = rating; rating = 1..3*/
-export interface MtItemGroups {
+export interface LtItemGroups {
   [key: string]: number;
   wool: number;
   fluffy: number;
@@ -52,20 +52,20 @@ export interface MetaDataRef {
   equals(other: MetaDataRef): boolean;
 }
 
-export interface MtItemStackMetaRef extends MetaDataRef {}
+export interface LtItemStackMetaRef extends MetaDataRef {}
 
-export interface MtItemStack {
+export interface LtItemStack {
   get_name(): string;
-  get_meta(): MtItemStackMetaRef;
+  get_meta(): LtItemStackMetaRef;
   name: string;
   count: number;
   wear: number;
   metadata: string;
 }
 
-export interface MtItemDef {
+export interface LtItemDef {
   description?: string;
-  groups?: Partial<MtItemGroups>;
+  groups?: Partial<LtItemGroups>;
   inventory_image?: string;
   wield_image?: string;
   /** An image file containing the palette of a node.
@@ -80,10 +80,10 @@ export interface MtItemDef {
   /** "0xFFFFFFFF"
    * The color of the item. The palette overrides this
    */
-  color?: MtColorSpec;
+  color?: LtColorSpec;
 
   /**{x = 1, y = 1, z = 1} */
-  wield_scale?: MtVec3;
+  wield_scale?: LtVec3;
 
   stack_max?: number;
 
@@ -91,7 +91,7 @@ export interface MtItemDef {
 
   liquids_pointable?: boolean;
 
-  tool_capabilities?: MtToolCapabilities;
+  tool_capabilities?: LtToolCapabilities;
 
   /**
    If nil and item is node, prediction is made automatically
@@ -101,14 +101,14 @@ export interface MtItemDef {
    on ground when the player places the item. Server will always update
    actual result to client in a short moment.
   */
-  node_placement_prediction?: MtNodePlacementPrediction;
+  node_placement_prediction?: LtNodePlacementPrediction;
 
-  sound?: Partial<MtSoundDefs>;
+  sound?: Partial<LtSoundDefs>;
 
   /**
    * Shall place item and return the leftover itemstack
    * The placer may be any ObjectRef or nil.
-   * default: minetest.item_place
+   * default: core.item_place
    */
   on_place?: OnPlaceCallback;
 
@@ -117,7 +117,7 @@ export interface MtItemDef {
    */
   on_secondary_use?: OnPlaceCallback;
 
-  /**Defaults to minetest.item_drop*/
+  /**Defaults to core.item_drop*/
   on_drop?: OnDropCallback;
 
   /** default: nil
@@ -134,7 +134,7 @@ export interface MtItemDef {
    * wearing out the tool. If returns nil, does nothing.
    * If after_use doesn't exist, it is the same as:
       ```ts
-      function (itemstack: MtItemStack, user: MtPlayer|undefined, node: MtNode, digparams: MtDigParams) {
+      function (itemstack: LtItemStack, user: LtPlayer|undefined, node: LtNode, digparams: LtDigParams) {
         itemstack.add_wear(digparams.wear);
         return itemstack;
       }
@@ -150,34 +150,34 @@ export interface MtItemDef {
   [_custom_field: string]: any;
 }
 
-export interface MtGroupCapability {
+export interface LtGroupCapability {
   times: Array<number>;
   uses: number;
   maxlevel: number;
 }
 
-export interface MtGroupCapabilities {
-  [key: string]: MtGroupCapability;
+export interface LtGroupCapabilities {
+  [key: string]: LtGroupCapability;
 
-  choppy: MtGroupCapability;
+  choppy: LtGroupCapability;
 }
 
-export interface MtGroupDamages {
+export interface LtGroupDamages {
   [groupname: string]: number;
 }
 
-export interface MtToolCapabilities {
+export interface LtToolCapabilities {
   full_punch_interval: number; // = 1.0,
   max_drop_level: number; // = 0,
-  groupcaps: Partial<MtGroupCapabilities>;
-  damage_groups: MtGroupDamages; // = {groupname = damage},
+  groupcaps: Partial<LtGroupCapabilities>;
+  damage_groups: LtGroupDamages; // = {groupname = damage},
 }
 
-export type MtItemName = string;
+export type LtItemName = string;
 
 export interface CraftRecipeCommon<T extends keyof CraftRecipeTypeMap> {
   type: T;
-  output: MtItemName;
+  output: LtItemName;
   /**
    * optional list of item pairs,
    * replace one input item with another item on crafting
@@ -216,13 +216,13 @@ export interface CraftRecipeToolRepair extends CraftRecipeCommon<"toolrepair"> {
 
 export interface CraftRecipeCooking extends CraftRecipeCommon<"cooking"> {
   // type: "cooking";
-  recipe: MtItemName;
+  recipe: LtItemName;
   cooktime: number;
 }
 
 export interface CraftRecipeFurnaceFuel extends CraftRecipeCommon<"fuel"> {
   // type: "fuel";
-  recipe: MtItemName;
+  recipe: LtItemName;
   /**seconds*/
   burntime: number;
 }
@@ -284,22 +284,22 @@ export type OreType = "scatter" | "sheet" | "puff" | "blob" | "vein";
 export interface OreNoiseParams {
   offset: number;
   scale: number;
-  spread: MtVec3;
+  spread: LtVec3;
   seed: number;
   octaves: number;
   persist: number;
 }
 
-export interface MtOreDef {
+export interface LtOreDef {
   ore_type: OreType;
 
   /**`default:stone_with_coal`*/
-  ore: MtItemName;
+  ore: LtItemName;
 
   /**`default:stone`
    * a list of nodenames is supported too
    */
-  wherein: MtNodeName | Array<MtNodeName>;
+  wherein: LtNodeName | Array<LtNodeName>;
 
   /**8 * 8 * 8
    * Ore has a 1 out of clust_scarcity chance of spawning in a node
