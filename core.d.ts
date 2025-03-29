@@ -45,16 +45,44 @@ export interface ChatCommandDef {
   func: (name: string, param: string) => LuaMultiReturn<[boolean, string]>;
 }
 
+/** https://api.luanti.org/core-namespace-reference/ */
 export interface LuantiGlobal {
-  register_on_joinplayer(this: void, cb: LtPlayerJoinCallback): void;
-  register_on_leaveplayer(this: void, cb: LtPlayerLeaveCallback): void;
-  register_on_shutdown(this: void, cb: () => void): void;
-  chat_send_player(this: void, playerName: string, message: string): void;
-  chat_send_all(this: void, message: string): void;
-
-  request_insecure_environment(this: void): LtInsecEnv;
-  get_modpath(this: void, modname: string): string;
+  // #region Utilities
+  // https://api.luanti.org/core-namespace-reference/#utilities
   get_current_modname(this: void): string;
+  get_modpath(this: void, modname: string): string;
+  // todo get_modnames
+  // todo get_game_info
+  // todo get_worldpath
+  // todo get_mod_data_path
+  // todo is_singleplayer
+  // todo features
+  // todo has_feature
+  // todo get_player_information
+  // todo protocol_versions
+  // todo get_player_window_information
+  // todo mkdir
+  // todo rmdir
+  // todo cpdir
+  // todo mvdir
+  // todo get_dir_list
+  // todo safe_file_write
+  // todo get_version
+  // todo sha1
+  // todo sha256
+  // todo colorspec_to_colorstring
+  // todo colorspec_to_bytes
+  // todo colorspec_to_table
+  // todo time_to_day_night_ratio
+  // todo encode_png
+  // todo urlencode
+  // #endregion Utilities
+
+  // #region Logging
+  // https://api.luanti.org/core-namespace-reference/#logging
+  // todo debug
+  // todo log
+  // #endregion Logging
 
   // #region Registration functions
   // https://api.luanti.org/core-namespace-reference/#registration-functions
@@ -103,6 +131,14 @@ export interface LuantiGlobal {
   clear_craft(this: void, recipe: CraftRecipeCommon<any>): void;
   // #endregion Gameplay
   // #endregion registration functions
+
+  register_on_joinplayer(this: void, cb: LtPlayerJoinCallback): void;
+  register_on_leaveplayer(this: void, cb: LtPlayerLeaveCallback): void;
+  register_on_shutdown(this: void, cb: () => void): void;
+  chat_send_player(this: void, playerName: string, message: string): void;
+  chat_send_all(this: void, message: string): void;
+
+  request_insecure_environment(this: void): LtInsecEnv;
 
   add_entity(
     this: void,
