@@ -12,34 +12,6 @@ import type {
 import type { LtSoundDefs } from "./sound";
 import type { LtVec3 } from "./vector";
 
-/** key = name, value = rating; rating = 1..3*/
-export interface LtItemGroups {
-  [key: string]: number;
-  wool: number;
-  fluffy: number;
-  soil: number;
-  outerspace: number;
-  crumbly: number;
-  bendy: number;
-  snappy: number;
-  hard: number;
-  metal: number;
-  spikes: number;
-  armor_head: number;
-  armor_torso: number;
-  armor_fire: number;
-  armor_legs: number;
-  armor_feet: number;
-  armor_shield: number;
-  not_in_creative_inventory: number;
-  armor_heal: number;
-  armor_use: number;
-  flammable: number;
-  cracky: number;
-  level: number;
-  choppy: number;
-}
-
 export interface MetaDataRef {
   set_string(k: string, v: string): void;
   get_string(k: string): string;
@@ -65,7 +37,7 @@ export interface LtItemStack {
 
 export interface LtItemDef {
   description?: string;
-  groups?: Partial<LtItemGroups>;
+  groups?: { [key: string]: number };
   inventory_image?: string;
   wield_image?: string;
   /** An image file containing the palette of a node.
