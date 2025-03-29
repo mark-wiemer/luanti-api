@@ -56,27 +56,53 @@ export interface LuantiGlobal {
   get_modpath(this: void, modname: string): string;
   get_current_modname(this: void): string;
 
-  /** https://api.luanti.org/aliases/ */
-  register_alias(this: void, alias: string, originalName: string): void;
+  // #region Registration functions
+  // https://api.luanti.org/core-namespace-reference/#registration-functions
+  // #region Environment
+  // https://api.luanti.org/core-namespace-reference/#environment
   /**
-   * Used for registering the hand. Other objects should use:
+   * Not recommended for general use. Instead, try:
    * - `register_craftitem`
    * - `register_tool`
    * - `register_node`
+   * - `override_item`
    */
   register_item(this: void, name: string, itemDef: LtItemDef): void;
-  register_craftitem(this: void, name: string, itemDef: LtItemDef): void;
-  register_tool(this: void, name: string, itemDef: LtItemDef): void;
+  /** https://api.luanti.org/core-namespace-reference/#environment */
   register_node<NodeBoxType extends LtNodeBoxType>(
     this: void,
     name: string,
     itemDef: LtNodeDef<NodeBoxType>
   ): void;
+  /** https://api.luanti.org/core-namespace-reference/#environment */
+  register_craftitem(this: void, name: string, itemDef: LtItemDef): void;
+  /** https://api.luanti.org/core-namespace-reference/#environment */
+  register_tool(this: void, name: string, itemDef: LtItemDef): void;
+  /**
+   * https://api.luanti.org/core-namespace-reference/#environment
+   *
+   * Override an item definition. Item must already be defined.
+   */
+  override_item(
+    this: void,
+    name: string,
+    itemDef: LtItemDef,
+    /** Fields to set to `nil`. Cannot include "name" or "type". */
+    delFields?: string[]
+  ): void;
+  /** https://api.luanti.org/aliases/ */
+  register_alias(this: void, alias: string, originalName: string): void;
+  // #endregion Environment
+
+  // #region Gameplay
+  // https://api.luanti.org/core-namespace-reference/#gameplay
   register_craft<K extends keyof CraftRecipeTypeMap>(
     this: void,
     recipe: CraftRecipeTypeMap[K]
   ): void;
   clear_craft(this: void, recipe: CraftRecipeCommon<any>): void;
+  // #endregion Gameplay
+  // #endregion registration functions
 
   add_entity(
     this: void,

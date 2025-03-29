@@ -2,6 +2,7 @@
 
 ## 0.2.0 - unreleased
 
+- Add `override_item` (not tested)
 - Add `register_alias`
 - Add `register_item`
 - Update `LtGroupCapability` for compatibility with minimal game
