@@ -121,15 +121,19 @@ export interface LtItemDef {
 }
 
 export interface LtGroupCapability {
-  times: Array<number>;
-  uses: number;
-  maxlevel: number;
+  /**
+   * Time in seconds to dig a node of each rating.
+   * Ref https://api.luanti.org/tool-capabilities/#digging-times-times
+   */
+  // Record<number, number> supports the `times: { 1: 0 }` syntax that some may prefer
+  times: Record<number, number>;
+  /** https://api.luanti.org/tool-capabilities/#uses-uses-tools-only */
+  uses?: number;
+  maxlevel?: number;
 }
 
 export interface LtGroupCapabilities {
   [key: string]: LtGroupCapability;
-
-  choppy: LtGroupCapability;
 }
 
 export interface LtGroupDamages {
@@ -137,10 +141,16 @@ export interface LtGroupDamages {
 }
 
 export interface LtToolCapabilities {
-  full_punch_interval: number; // = 1.0,
-  max_drop_level: number; // = 0,
+  /**
+   * When used as a weapon, the item will do full damage if this time is spent between punches.
+   * If e.g. half the time is spent, the item will do half damage.
+   * Defaults to `1.0`
+   */
+  full_punch_interval?: number;
+  /** Group capabilities, see LtGroupCapabilities */
   groupcaps: Partial<LtGroupCapabilities>;
-  damage_groups: LtGroupDamages; // = {groupname = damage},
+  /** Types of entities that can be damaged. See https://api.luanti.org/entity-damage-mechanism/ */
+  damage_groups?: LtGroupDamages;
 }
 
 export type LtItemName = string;
