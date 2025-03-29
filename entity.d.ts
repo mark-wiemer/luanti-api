@@ -1,4 +1,3 @@
-
 import type { MtToolCapabilities } from "./item";
 import { MtNodeBox } from "./node";
 import type { MtObjRef, MtObjProperties } from "./object";
@@ -20,7 +19,13 @@ export interface MtEntityOnStep {
   (this: MtObjRef, dtime: number): void;
 }
 export interface MtEntityOnPunch {
-  (this: MtObjRef, puncher: MtObjRef | undefined, time_from_last_punch: number, tool_capabilities: MtToolCapabilities, dir: MtVec3): void;
+  (
+    this: MtObjRef,
+    puncher: MtObjRef | undefined,
+    time_from_last_punch: number,
+    tool_capabilities: MtToolCapabilities,
+    dir: MtVec3
+  ): void;
 }
 export interface MtEntityOnRightClick {
   (this: MtObjRef, clicker: MtObjRef | undefined): void;
@@ -30,7 +35,7 @@ export interface MtEntityGetStaticDataCallback {
 }
 
 export interface MtEntityDef extends MtObjProperties {
-  /** @deprecated 
+  /** @deprecated
    * Everything in object properties is read directly from here
    */
   initial_properties: Partial<MtObjProperties>;
@@ -42,7 +47,7 @@ export interface MtEntityDef extends MtObjProperties {
   /**
    * Called sometimes; the string returned is passed to on_activate when
    * the entity is re-activated from static state
-  */
+   */
   get_staticdata: MtEntityGetStaticDataCallback;
 
   [_custom: string]: any;
@@ -52,4 +57,3 @@ export interface MtEntityDef extends MtObjProperties {
   -- more info)
   */
 }
-

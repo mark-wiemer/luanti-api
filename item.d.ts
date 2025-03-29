@@ -1,7 +1,14 @@
-
 import type { MtColorSpec } from "./color";
 import { MtInvRef } from "./inventory";
-import type { AfterUseCallback, MtNodeMetaRef, MtNodeName, MtNodePlacementPrediction, OnDropCallback, OnPlaceCallback, OnUseCallback } from "./node";
+import type {
+  AfterUseCallback,
+  MtNodeMetaRef,
+  MtNodeName,
+  MtNodePlacementPrediction,
+  OnDropCallback,
+  OnPlaceCallback,
+  OnUseCallback,
+} from "./node";
 import type { MtSoundDefs } from "./sound";
 import type { MtVec3 } from "./vector";
 
@@ -40,14 +47,12 @@ export interface MetaDataRef {
   get_int(k: string): number;
   set_float(k: string, f: number): void;
   get_float(k: string): number;
-  to_table(): undefined|any;
-  from_table(t: any): void|true;
+  to_table(): undefined | any;
+  from_table(t: any): void | true;
   equals(other: MetaDataRef): boolean;
 }
 
-export interface MtItemStackMetaRef extends MetaDataRef {
-
-}
+export interface MtItemStackMetaRef extends MetaDataRef {}
 
 export interface MtItemStack {
   get_name(): string;
@@ -57,7 +62,6 @@ export interface MtItemStack {
   wear: number;
   metadata: string;
 }
-
 
 export interface MtItemDef {
   description?: string;
@@ -146,7 +150,6 @@ export interface MtItemDef {
   [_custom_field: string]: any;
 }
 
-
 export interface MtGroupCapability {
   times: Array<number>;
   uses: number;
@@ -164,7 +167,7 @@ export interface MtGroupDamages {
 }
 
 export interface MtToolCapabilities {
-  full_punch_interval: number;// = 1.0,
+  full_punch_interval: number; // = 1.0,
   max_drop_level: number; // = 0,
   groupcaps: Partial<MtGroupCapabilities>;
   damage_groups: MtGroupDamages; // = {groupname = damage},
@@ -236,7 +239,7 @@ export interface CraftRecipeTypeMap {
  * ## scatter
  * Randomly chooses a location and generates a cluster of ore.
  * If noise_params is specified, the ore will be placed if the 3D perlin noise at that point is greater than the noise_threshold, giving the ability to create a non-equal distribution of ore.
- * 
+ *
  * ## sheet
  * Creates a sheet of ore in a blob shape according to the 2D perlin noise
  * described by noise_params and noise_threshold.
@@ -251,7 +254,7 @@ export interface CraftRecipeTypeMap {
  * column_midpoint_factor is a decimal number ranging in value from 0 to 1.
  * If this parameter is not specified, the default is 0.5.
  * The ore parameters clust_scarcity and clust_num_ores are ignored for this ore type.
- * 
+ *
  * ## puff
  * Creates a sheet of ore in a cloud-like puff shape
  * As with the sheet ore type, the size and shape of puffs are
@@ -259,17 +262,17 @@ export interface CraftRecipeTypeMap {
  * are placed at random vertical positions within the currently generated chunk
  * The vertical top and bottom displacement of each puff are
  * determined by the noise parameters np_puff_top and np_puff_bottom, respectively.
- * 
+ *
  * ## blob
  * Creates a deformed sphere of ore according to 3d perlin noise described by noise_params.
  * The maximum size of the blob is clust_size, and clust_scarcity has the same meaning as with the scatter type.
- * 
+ *
  * ## vein
  * Creates veins of ore varying in density by according to the intersection
  * of two instances of 3d perlin noise with diffferent seeds,
  * both described by noise_params. random_factor varies the influence
  * random chance has on placement of an ore inside the vein, which is 1 by default.
- * 
+ *
  * Note that modifying this parameter may require adjusting noise_threshold.
  * The parameters clust_scarcity, clust_num_ores, and clust_size are ignored by this ore type.
  * This ore type is difficult to control since it is sensitive to small changes.
@@ -307,7 +310,7 @@ export interface MtOreDef {
   /**
    * 8
    * Number of ores in a cluster
-  */
+   */
   clust_num_ores: number;
 
   /**Size of the bounding box of the cluster
@@ -316,7 +319,7 @@ export interface MtOreDef {
   clust_size: number;
 
   /**
-   * -31000 
+   * -31000
    */
   y_min: number;
   /**64*/

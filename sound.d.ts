@@ -1,4 +1,3 @@
-
 export type MtSimpleSoundSpec = string;
 
 export interface MtSoundDefs {

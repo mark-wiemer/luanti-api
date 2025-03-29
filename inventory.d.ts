@@ -10,7 +10,7 @@ export interface MtInvRef {
   /**set size of a list
    * returns false on error (e.g. invalid listname or size)
    */
-  set_size(listname: string, size: number): void|false;
+  set_size(listname: string, size: number): void | false;
 
   /**get width of a list*/
   get_width(listname: string): number;
@@ -43,7 +43,7 @@ export interface MtInvRef {
 
   /**returns true if the stack of items can be fully taken from the list*/
   contains_item(listname: string, stack: MtItemStack): boolean;
-  
+
   /**take as many items as specified from the list
    * returns the items that were actually removed (as an ItemStack)
    * @note: any item metadata is ignored

@@ -1,4 +1,1 @@
-
-export interface MtColorSpec {
-
-}
+export interface MtColorSpec {}

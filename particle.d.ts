@@ -1,4 +1,3 @@
-
 import { MtTileAnimDef, MtTileAnimTypeMap } from "./node";
 import { MtObjRef } from "./object";
 import { MtVec3 } from "./vector";

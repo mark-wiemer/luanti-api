@@ -9,6 +9,6 @@
   },
   "tstl": {
     "luaTarget": "JIT",
-    "luaLibImport":"inline"
+    "luaLibImport": "inline"
   }
 }

@@ -1,4 +1,3 @@
-
 import type { MtColorSpec } from "./color";
 import type { MtPointedThing } from "./entity";
 import { MtInvRef } from "./inventory";
@@ -12,15 +11,30 @@ export type MtNodeName = string;
 export type MtNodePlacementPrediction = string;
 
 export interface OnPlaceCallback {
-  (this: void, itemstack: MtItemStack, placer: MtPlayer | undefined, pointed_thing: MtPointedThing): MtItemStack | undefined;
+  (
+    this: void,
+    itemstack: MtItemStack,
+    placer: MtPlayer | undefined,
+    pointed_thing: MtPointedThing
+  ): MtItemStack | undefined;
 }
 
 export interface OnDropCallback {
-  (this: void, itemstack: MtItemStack, dropper: MtPlayer | undefined, pos: MtVec3): void;
+  (
+    this: void,
+    itemstack: MtItemStack,
+    dropper: MtPlayer | undefined,
+    pos: MtVec3
+  ): void;
 }
 
 export interface OnUseCallback {
-  (this: void, itemstack: MtItemStack, user: MtPlayer | undefined, pointed_thing: MtPointedThing): MtItemStack | undefined;
+  (
+    this: void,
+    itemstack: MtItemStack,
+    user: MtPlayer | undefined,
+    pointed_thing: MtPointedThing
+  ): MtItemStack | undefined;
 }
 
 export interface MtNode {
@@ -29,18 +43,28 @@ export interface MtNode {
   param2: number;
 }
 
-export interface MtDigParams {
-
-}
+export interface MtDigParams {}
 
 export interface AfterUseCallback {
-  (this: void, itemstack: MtItemStack, user: MtPlayer | undefined, node: MtNode, digparams: MtDigParams): void;
+  (
+    this: void,
+    itemstack: MtItemStack,
+    user: MtPlayer | undefined,
+    node: MtNode,
+    digparams: MtDigParams
+  ): void;
 }
 
 export type MtCollisionBox = Array<number>;
 
 export interface MTABMAction {
-  (this: void, pos: MtVec3, node: MtNode, active_object_count: number, active_object_count_wider: number): void;
+  (
+    this: void,
+    pos: MtVec3,
+    node: MtNode,
+    active_object_count: number,
+    active_object_count_wider: number
+  ): void;
 }
 
 export interface MtABMDef {
@@ -55,7 +79,7 @@ export interface MtABMDef {
   /**
    * Any of these
    * If left out or empty, any neighbor will do
-  */
+   */
   neighbors: Array<string>;
 
   /**Operation interval in seconds*/
@@ -89,7 +113,7 @@ export interface MtLBMDef {
    * List of node names to trigger the LBM on
    * Also non-registered nodes will work
    * Groups (as of group:groupname) will work as well
-  */
+   */
   nodenames: Array<string>;
 
   /**
@@ -101,7 +125,8 @@ export interface MtLBMDef {
   action: MtLBMAction;
 }
 
-export interface MtTileAnimVerticalFramesDef extends MtTileAnimDef<"vertical_frames"> {
+export interface MtTileAnimVerticalFramesDef
+  extends MtTileAnimDef<"vertical_frames"> {
   /**Width of a frame in pixels*/
   aspect_w: number;
   /**Height of a frame in pixels*/
@@ -143,10 +168,15 @@ export type MtNodeParamType2 = "facedir"; //TODO - see what is allowed
 
 export type MtNodeLiquidType = "none" | "source" | "flowing";
 
-export type MtNodeBoxType = "regular" | "leveled" | "fixed" | "wallmounted" | "connected";
+export type MtNodeBoxType =
+  | "regular"
+  | "leveled"
+  | "fixed"
+  | "wallmounted"
+  | "connected";
 
 export type MtNodeBoxData = Array<number>;
-export type MtNodeBoxesData = MtNodeBoxData|Array<MtNodeBoxData>;
+export type MtNodeBoxesData = MtNodeBoxData | Array<MtNodeBoxData>;
 
 export interface MtNodeBoxTypeMap {
   regular: MtNodeBoxRegular;
@@ -163,8 +193,7 @@ export interface MtNodeBoxRegular extends MtNodeBox<"regular"> {
   //TODO - lua_api not clear on this
 }
 /**TODO - lua_api not clear on this at all*/
-export interface MtNodeBoxLeveled extends MtNodeBox<"leveled"> {
-}
+export interface MtNodeBoxLeveled extends MtNodeBox<"leveled"> {}
 export interface MtNodeBoxFixed extends MtNodeBox<"fixed"> {
   fixed: MtNodeBoxesData;
 }
@@ -202,7 +231,13 @@ export interface MtNodeOnFloodCallback {
 }
 
 export interface MtNodeOnPlaceCallback {
-  (this: void, pos: MtVec3, placer: MtPlayer | undefined, itemstack: MtItemStack, pointed_thing: MtPointedThing): void;
+  (
+    this: void,
+    pos: MtVec3,
+    placer: MtPlayer | undefined,
+    itemstack: MtItemStack,
+    pointed_thing: MtPointedThing
+  ): void;
 }
 
 export interface MtNodeMetaRef extends MetaDataRef {
@@ -210,7 +245,13 @@ export interface MtNodeMetaRef extends MetaDataRef {
 }
 
 export interface MtNodeAfterDigCallback {
-  (this: void, pos: MtVec3, oldnode: MtNode, oldmetadata: MtNodeMetaRef, digger: MtPlayer | undefined): void;
+  (
+    this: void,
+    pos: MtVec3,
+    oldnode: MtNode,
+    oldmetadata: MtNodeMetaRef,
+    digger: MtPlayer | undefined
+  ): void;
 }
 
 export interface MtNodeCanDigCallback {
@@ -218,10 +259,23 @@ export interface MtNodeCanDigCallback {
 }
 
 export interface MtNodeOnPunchCallback {
-  (this: void, pos: MtVec3, node: MtNode, puncher: MtPlayer | undefined, pointed_thing: MtPointedThing): void;
+  (
+    this: void,
+    pos: MtVec3,
+    node: MtNode,
+    puncher: MtPlayer | undefined,
+    pointed_thing: MtPointedThing
+  ): void;
 }
 export interface MtNodeOnRightClickCallback {
-  (this: void, pos: MtVec3, node: MtNode, clicker: MtPlayer | undefined, itemstack: MtItemStack, pointed_thing: MtPointedThing): void;
+  (
+    this: void,
+    pos: MtVec3,
+    node: MtNode,
+    clicker: MtPlayer | undefined,
+    itemstack: MtItemStack,
+    pointed_thing: MtPointedThing
+  ): void;
 }
 
 export interface MtNodeOnDigCallback {
@@ -238,31 +292,83 @@ export interface MtNodeFields {
 }
 
 export interface MtNodeOnReceiveFields {
-  (this: void, pos: MtVec3, formname: string, fields: MtNodeFields, sender: MtPlayer | undefined): void;
+  (
+    this: void,
+    pos: MtVec3,
+    formname: string,
+    fields: MtNodeFields,
+    sender: MtPlayer | undefined
+  ): void;
 }
 
 export interface MtNodeAllowMetadataInventoryMoveCallback {
-  (this: void, pos: MtVec3, from_list: any, from_index: number, to_list: any, to_index: number, count: number, player: MtPlayer | undefined): number;
+  (
+    this: void,
+    pos: MtVec3,
+    from_list: any,
+    from_index: number,
+    to_list: any,
+    to_index: number,
+    count: number,
+    player: MtPlayer | undefined
+  ): number;
 }
 
 export interface MtNodeAllowMetadataInventoryPutCallback {
-  (this: void, pos: MtVec3, listname: string, index: number, stack: MtItemStack, player: MtPlayer | undefined): boolean;
+  (
+    this: void,
+    pos: MtVec3,
+    listname: string,
+    index: number,
+    stack: MtItemStack,
+    player: MtPlayer | undefined
+  ): boolean;
 }
 
 export interface MtNodeAllowMetadataInventoryTakeCallback {
-  (this: void, pos: MtVec3, listname: string, index: number, stack: MtItemStack, player: MtPlayer): boolean;
+  (
+    this: void,
+    pos: MtVec3,
+    listname: string,
+    index: number,
+    stack: MtItemStack,
+    player: MtPlayer
+  ): boolean;
 }
 
 export interface MtNodeOnMetadataInventoryMove {
-  (this: void, pos: MtVec3, from_list: any, from_index: number, to_list: any, to_index: number, count: number, player: MtPlayer | undefined): void;
+  (
+    this: void,
+    pos: MtVec3,
+    from_list: any,
+    from_index: number,
+    to_list: any,
+    to_index: number,
+    count: number,
+    player: MtPlayer | undefined
+  ): void;
 }
 
 export interface MtNodeOnMetadataInventoryPut {
-  (this: void, pos: MtVec3, listname: string, index: number, stack: MtItemStack, player: MtPlayer | undefined): void;
+  (
+    this: void,
+    pos: MtVec3,
+    listname: string,
+    index: number,
+    stack: MtItemStack,
+    player: MtPlayer | undefined
+  ): void;
 }
 
 export interface MtNodeOnMetadataInventoryTake {
-  (this: void, pos: MtVec3, listname: string, index: number, stack: MtItemStack, player: MtPlayer | undefined): void;
+  (
+    this: void,
+    pos: MtVec3,
+    listname: string,
+    index: number,
+    stack: MtItemStack,
+    player: MtPlayer | undefined
+  ): void;
 }
 
 export interface MtNodeOnBlast {
@@ -276,32 +382,33 @@ export interface MtNodeDropDef {
   /**Choose max_items randomly from this list*/
   items: Array<{
     /**Items to drop*/
-    items: Array<string>,
+    items: Array<string>;
     /**Probability of dropping is 1 / rarity*/
-    rarity: number,
-  }>
+    rarity: number;
+  }>;
 }
 
 export type MtNodeDrawtype =
-  "normal" |
-  "airlike" |
-  "liquid" |
-  "flowingliquid" |
-  "glasslike" |
-  "glasslike_framed" |
-  "glasslike_framed_optional" |
-  "allfaces" |
-  "allfaces_optional" |
-  "torchlike" |
-  "signlike" |
-  "plantlike" |
-  "firelike" |
-  "fencelike" |
-  "raillike" |
-  "nodebox" |
-  "mesh";
+  | "normal"
+  | "airlike"
+  | "liquid"
+  | "flowingliquid"
+  | "glasslike"
+  | "glasslike_framed"
+  | "glasslike_framed_optional"
+  | "allfaces"
+  | "allfaces_optional"
+  | "torchlike"
+  | "signlike"
+  | "plantlike"
+  | "firelike"
+  | "fencelike"
+  | "raillike"
+  | "nodebox"
+  | "mesh";
 
-export interface MtNodeDef<NodeBoxType extends MtNodeBoxType> extends MtItemDef {
+export interface MtNodeDef<NodeBoxType extends MtNodeBoxType>
+  extends MtItemDef {
   drawtype?: MtNodeDrawtype;
   /**
    * Supported for drawtypes "plantlike", "signlike", "torchlike",
@@ -313,8 +420,8 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType> extends MtItemDef 
   visual_scale?: number;
   /**Textures of node; +Y, -Y, +X, -X, +Z, -Z
    * List can be shortened to needed length
-  */
-  tiles?: string[]|MtTileDef<keyof MtTileAnimTypeMap>[];
+   */
+  tiles?: string[] | MtTileDef<keyof MtTileAnimTypeMap>[];
   /**
    * Same as `tiles`, but these textures are drawn on top of the
    * base tiles.You can use this to colorize only specific parts of
@@ -322,13 +429,13 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType> extends MtItemDef 
    * overlay is not drawn.Since such tiles are drawn twice, it
    * is not recommended to use overlays on very common nodes.
    */
-  overlay_tiles?: string[]|MtTileDef<keyof MtTileAnimTypeMap>[];
+  overlay_tiles?: string[] | MtTileDef<keyof MtTileAnimTypeMap>[];
 
   /**
    * Special textures of node; used rarely(old field name: special_materials)
    * List can be shortened to needed length
    */
-  special_tiles?: string[]|MtTileDef<keyof MtTileAnimTypeMap>[];
+  special_tiles?: string[] | MtTileDef<keyof MtTileAnimTypeMap>[];
   /**
    * The node's original color will be multiplied with this color.
    * If the node has a palette, then this setting only has an effect
@@ -524,7 +631,7 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType> extends MtItemDef 
   /**
    * Called when an UI form(e.g.sign text input) returns data
    * default: nil
-  */
+   */
   on_receive_fields?: MtNodeOnReceiveFields;
 
   /**
@@ -539,7 +646,6 @@ export interface MtNodeDef<NodeBoxType extends MtNodeBoxType> extends MtItemDef 
    * Return value: -1: Allow and don't modify item count in inventory
    */
   allow_metadata_inventory_put?: MtNodeAllowMetadataInventoryPutCallback;
-
 
   /**Called when a player wants to take something out of the inventory
    * Return value: number of items allowed to take
