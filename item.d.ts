@@ -1,8 +1,6 @@
 import type { LtColorSpec } from "./color";
-import { LtInvRef } from "./inventory";
 import type {
   AfterUseCallback,
-  LtNodeMetaRef,
   LtNodeName,
   LtNodePlacementPrediction,
   OnDropCallback,
