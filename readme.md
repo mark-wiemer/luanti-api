@@ -1,4 +1,4 @@
-# luanti-api
+# Luanti API
 
 Type definitions for using the Luanti API via TypeScriptToLua
 
@@ -107,3 +107,7 @@ Which both properly output:
 ```lua
 player:get_player_name()
 ```
+
+## Acknowledgements
+
+This project is a fork of [@repcomm/mt-api](https://github.com/RepComm/mt-api) from 2023.
