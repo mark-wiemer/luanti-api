@@ -377,9 +377,32 @@ export interface LuantiGlobal {
   // todo sound_fade
   // #endregion Sounds
 
+  // #region Timing
+  //* https://api.luanti.org/core-namespace-reference/#timing
+  after(this: void, time: number, func: () => void): void;
+  // todo job:cancel
+  // #endregion Timing
+
+  // #region Async environment
+  //* https://api.luanti.org/core-namespace-reference/#async-environment
+  // todo handle_async
+  // todo register_async_dofile
+  // todo settings
+  // todo registered_items
+  // todo registered_nodes
+  // todo registered_tools
+  // todo registered_craftitems
+  // todo registered_aliases
+  // todo other stuff?
+  // #endregion Async environment
+
+  // #region Mapgen environment
+  //* https://api.luanti.org/core-namespace-reference/#mapgen-environment
+
+  // #endregion Mapgen environment
+
   //* Unorganized definitions
   request_insecure_environment(this: void): LtInsecEnv;
-  after(this: void, time: number, func: () => void): void;
   raycast(
     this: void,
     from: LtVec3,
