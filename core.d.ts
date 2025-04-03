@@ -46,6 +46,7 @@ export interface ChatCommandDef {
 }
 
 /** https://api.luanti.org/core-namespace-reference/ */
+// Region titles come from the API docs
 export interface LuantiGlobal {
   // #region Utilities
   //* https://api.luanti.org/core-namespace-reference/#utilities
@@ -187,25 +188,102 @@ export interface LuantiGlobal {
   // todo register_on_modchannel_message
   // todo register_on_liquid_transformed
   // todo register_on_mapblocks_changed
-  // #endregrion Global callback registration functions
+  // #endregion Global callback registration functions
 
-  // todo https://api.luanti.org/core-namespace-reference/#setting-related and below
+  // #region Setting-related
+  //* https://api.luanti.org/core-namespace-reference/#setting-related
+  // todo string_to_privs
+  // todo privs_to_string
+  // todo get_player_privs
+  // todo check_player_privs
+  // todo check_password_entry
+  // todo get_password_hash
+  // todo get_player_ip
+  // todo get_auth_handler
+  // todo notify_authentication_modified
+  // todo set_player_password
+  // todo set_player_privs
+  // todo change_player_privs
+  // todo auth_reload
+  // #endregion Setting-related
 
-  //* Unorganized definitions
-  chat_send_player(this: void, playerName: string, message: string): void;
+  // #region Chat
+  //* https://api.luanti.org/core-namespace-reference/#chat
   chat_send_all(this: void, message: string): void;
-  request_insecure_environment(this: void): LtInsecEnv;
+  chat_send_player(this: void, playerName: string, message: string): void;
+  // todo format_chat_message
+  // #endregion Chat
+
+  // #region Environment access
+  //* https://api.luanti.org/core-namespace-reference/#environment-access
+  // todo set_node
+  // todo add_node
+  // todo bulk_set_node
+  // todo swap_node
+  // todo bulk_swap_node
+  // todo remove_node
+  get_node(this: void, pos: LtVec3): LtNode;
+  get_node_or_nil(this: void, pos: LtVec3): LtNode | undefined;
+  // todo get_node_light
+  // todo get_natural_light
+  // todo get_artificial_light
+  // todo place_node
+  // todo dig_node
+  // todo punch_node
+  // todo spawn_falling_node
+  // todo find_nodes_with_meta
+  // todo get_meta
+  // todo get_node_timer
   add_entity(
     this: void,
     pos: LtVec3,
     name: string,
     staticdata?: LtEntityStaticData
   ): LtObjRef;
+  // todo add_item
   get_player_by_name(this: void, name: string): LtPlayer | undefined;
-  get_node_or_nil(this: void, pos: LtVec3): LtNode | undefined;
-  get_node(this: void, pos: LtVec3): LtNode;
-  after(this: void, time: number, func: () => void): void;
+  get_objects_inside_radius(
+    this: void,
+    pos: LtVec3,
+    radius: number
+  ): LtObjRef[];
+  // todo objects_inside_radius
+  // todo get_objects_in_area
+  // todo objects_in_area
+  // todo set_timeofday
+  // todo get_timeofday
   get_gametime(this: void): number;
+  // todo get_day_count
+  // todo find_node_near
+  // todo find_nodes_in_area
+  // todo find_nodes_in_area_under_air
+  // todo get_perlin (not the deprecated one)
+  // todo get_voxel_manip
+  // todo set_gen_notify
+  // todo get_gen_notify
+  // todo get_decoration_id
+  // todo get_mapgen_object
+  // todo get_heat
+  // todo get_humidity
+  // todo get_biome_data
+  // todo get_biome_id
+  // todo get_biome_name
+  // todo get_mapgen_params
+  // todo set_mapgen_params
+  // todo get_mapgen_edges
+  // todo get_mapgen_setting
+  // todo get_mapgen_setting_noiseparams
+  // todo set_mapgen_setting
+  // todo set_mapgen_setting_noiseparams
+  // todo set_noiseparams
+  // todo get_noiseparams
+  // todo generate_ores
+  // todo generate_decorations
+  // todo clear_objects
+  // todo load_area
+  // todo emerge_area
+  // todo delete_area
+  // todo line_of_sight
   raycast(
     this: void,
     from: LtVec3,
@@ -215,14 +293,280 @@ export interface LuantiGlobal {
   ): Raycast;
   luaentities: { [key: string]: LtObjRef };
   object_refs: { [key: string]: LtObjRef };
+  // todo find_path
+  // todo spawn_tree
+  // todo spawn_tree_on_vmanip
+  // todo transforming_liquid_add
+  // todo get_node_max_level
+  // todo get_node_level
+  // todo set_node_level
+  // todo add_node_level
+  // todo get_node_boxes
+  // todo fix_light
+  // todo check_single_for_falling
+  // todo check_for_falling
+  // todo get_spawn_level
+  // #endregion Environment access
+
+  // #region Mod channels
+  //* https://api.luanti.org/core-namespace-reference/#mod-channels
+  // todo mod_channel_join
+  // #endregion Mod channels
+
+  // #region Inventory
+  //* https://api.luanti.org/core-namespace-reference/#inventory
+  // todo get_inventory
+  // todo create_detached_inventory
+  // todo remove_detached_inventory
+  // todo do_item_eat
+  // #endregion Inventory
+
+  // #region Formspec
+  //* https://api.luanti.org/core-namespace-reference/#formspec
+  // todo show_formspec
+  // todo close_formspec
+  // todo formspec_escape
+  // todo hypertext_escape
+  // todo explode_table_event
+  // todo explode_textlist_event
+  // todo explode_scrollbar_event
+  // todo show_death_screen
+  // #endregion Formspec
+
+  // #region Item handling
+  //* https://api.luanti.org/core-namespace-reference/#item-handling
+  // todo inventorycube
+  // todo get_pointed_thing_position
+  // todo dir_to_facedir
+  // todo facedir_to_dir
+  // todo dir_to_fourdir
+  // todo fourdir_to_dir
+  // todo dir_to_wallmounted
+  // todo wallmounted_to_dir
+  // todo dir_to_yaw
+  // todo yaw_to_dir
+  // todo is_colored_paramtype
+  // todo strip_param2_color
+  // todo get_node_drops
+  // todo get_craft_result
+  // todo get_craft_recipe
+  // todo get_all_craft_recipes
+  // todo handle_node_drops
+  // todo itemstring_with_palette
+  // todo itemstring_with_color
+  // #endregion Item handling
+
+  // #region Rollback
+  //* https://api.luanti.org/core-namespace-reference/#rollback
+  // todo rollback_get_node_actions
+  // todo rollback_revert_actions_by
+  // #endregion Rollback
+
+  // #region on_place and on_drop defaults
+  // https://api.luanti.org/core-namespace-reference/#defaults-for-the-on_place-and-on_drop-item-definition-functions
+  // todo item_place_node
+  // todo item_place_object
+  // todo item_place
+  // todo item_pickup
+  // todo item_drop
+  // todo item_eat
+  // #endregion on_place and on_drop defaults
+
+  // #region on_punch and on_dig defaults
+  // https://api.luanti.org/core-namespace-reference/#defaults-for-the-on_punch-and-on_dig-node-definition-callbacks
+  // todo node_punch
+  // todo node_dig
+  // #endregion on_punch and on_dig defaults
+
+  // #region Sounds
+  //* https://api.luanti.org/core-namespace-reference/#sounds
+  // todo sound_play
+  // todo sound_stop
+  // todo sound_fade
+  // #endregion Sounds
+
+  // #region Timing
+  //* https://api.luanti.org/core-namespace-reference/#timing
+  after(this: void, time: number, func: () => void): void;
+  // todo job:cancel
+  // #endregion Timing
+
+  // #region Async environment
+  //* https://api.luanti.org/core-namespace-reference/#async-environment
+  // todo handle_async
+  // todo register_async_dofile
+  // todo settings
+  // todo registered_items
+  // todo registered_nodes
+  // todo registered_tools
+  // todo registered_craftitems
+  // todo registered_aliases
+  // todo other stuff?
+  // #endregion Async environment
+
+  // #region Mapgen environment
+  //* https://api.luanti.org/core-namespace-reference/#mapgen-environment
+  // todo register_mapgen_script
+  // todo register_on_generated
+  // todo save_gen_notify
+  // #endregion Mapgen environment
+
+  // #region Server
+  //* https://api.luanti.org/core-namespace-reference/#server
+  // todo request_shutdown
+  // todo cancel_shutdown_requests
+  // todo get_server_status
+  // todo get_server_uptime
+  // todo get_server_max_lag
+  // todo remove_player
+  // todo remove_player_auth
+  // todo dynamic_add_media
+  // #endregion Server
+
+  // #region IPC
+  //* https://api.luanti.org/core-namespace-reference/#ipc
+  // todo ipc_get
+  // todo ipc_cas
+  // todo ipc_poll
+  // #endregion IPC
+
+  // #region Bans
+  //* https://api.luanti.org/core-namespace-reference/#bans
+  // todo get_ban_list
+  // todo get_ban_description
+  // todo ban_player
+  // todo unban_player_or_ip
+  // todo kick_player
+  // todo disconnect_player
+  // #endregion Bans
+
+  // #region Particles
+  //* https://api.luanti.org/core-namespace-reference/#particles
   add_particle(this: void, partDef: LtParticleDef): number;
   add_particlespawner(this: void, partSpawnDef: LtParticleSpawnerDef): number;
   delete_particlespawner(this: void, id: number, playername?: string): void;
-  get_objects_inside_radius(
-    this: void,
-    pos: LtVec3,
-    radius: number
-  ): LtObjRef[];
+  // #endregion Particles
+
+  // #region Schematics
+  //* https://api.luanti.org/core-namespace-reference/#schematics
+  // todo create_schematic
+  // todo place_schematic
+  // todo place_schematic_on_vmanip
+  // todo serialize_schematic
+  // todo read_schematic
+  // #endregion Schematics
+
+  // #region HTTP Requests
+  //* https://api.luanti.org/core-namespace-reference/#http-requests
+  // todo request_http_api
+  // #endregion HTTP Requests
+
+  // #region Storage API
+  //* https://api.luanti.org/core-namespace-reference/#storage-api
+  // todo get_mod_storage
+  // #endregion Storage API
+
+  // #region Misc.
+  //* https://api.luanti.org/core-namespace-reference/#misc
+  // todo get_connected_players
+  // todo is_player
+  // todo player_exists
+  // todo is_valid_player_name
+  // todo hud_replace_builtin
+  // todo parse_relative_number
+  // todo send_join_message
+  // todo send_leave_message
+  // todo hash_node_position
+  // todo get_position_from_hash
+  // todo get_item_group
+  // todo get_node_group
+  // todo raillike_group
+  // todo get_content_id
+  // todo get_name_from_content_id
+  // todo parse_json
+  // todo write_json
+  // todo serialize
+  // todo deserialize
+  // todo compress
+  // todo decompress
+  // todo rgba
+  // todo encode_base64
+  // todo decode_base64
+  // todo is_protected
+  // todo record_protection_violation
+  // todo is_creative_enabled
+  // todo is_area_protected
+  // todo rotate_and_place
+  // todo rotate_node
+  // todo calculate_knockback
+  // todo forceload_block
+  // todo forceload_free_block
+  // todo compare_block_status
+  request_insecure_environment(this: void): LtInsecEnv;
+  // todo global_exists
+  // todo register_portable_metatable
+  // #endregion Misc.
+
+  // #region Global objects
+  //* https://api.luanti.org/core-namespace-reference/#global-objects
+  // todo env
+  // #endregion Global objects
+
+  // #region Global tables
+  //* https://api.luanti.org/core-namespace-reference/#global-tables
+  // todo registered_items
+  // todo registered_nodes
+  // todo registered_craftitems
+  // todo registered_tools
+  // todo registered_entities
+  // todo object_refs
+  // todo luaentities
+  // todo registered_abms
+  // todo registered_lbms
+  // todo registered_aliases
+  // todo registered_ores
+  // todo registered_biomes
+  // todo registered_decorations
+  // todo registered_chatcommands
+  // todo registered_privileges
+  // #endregion Global tables
+
+  // #region Registered callback tables
+  //* https://api.luanti.org/core-namespace-reference/#registered-callback-tables
+  // todo registered_on_chat_messages
+  // todo registered_on_chatcommands
+  // todo registered_globalsteps
+  // todo registered_on_punchnodes
+  // todo registered_on_placenodes
+  // todo registered_on_dignodes
+  // todo registered_on_generateds
+  // todo registered_on_newplayers
+  // todo registered_on_dieplayers
+  // todo registered_on_respawnplayers
+  // todo registered_on_prejoinplayers
+  // todo registered_on_joinplayers
+  // todo registered_on_leaveplayers
+  // todo registered_on_player_receive_fields
+  // todo registered_on_cheats
+  // todo registered_on_crafts
+  // todo registered_craft_predicts
+  // todo registered_on_item_eats
+  // todo registered_on_item_pickups
+  // todo registered_on_punchplayers
+  // todo registered_on_authplayers
+  // todo registered_on_player_inventory_actions
+  // todo registered_allow_player_inventory_actions
+  // todo registered_on_rightclickplayers
+  // todo registered_on_mods_loaded
+  // todo registered_on_shutdown
+  // todo registered_on_protection_violation
+  // todo registered_on_priv_grant
+  // todo registered_on_priv_revoke
+  // todo registered_can_bypass_userlimit
+  // todo registered_on_modchannel_message
+  // todo registered_on_liquid_transformed
+  // todo registered_on_mapblocks_changed
+  // #endregion Registered callback tables
 }
 
 declare global {

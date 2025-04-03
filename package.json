@@ -1,7 +1,7 @@
 {
   "name": "@mark-wiemer/luanti-api",
   "main": "./index.d.ts",
-  "version": "0.1.0",
+  "version": "0.2.0-dev",
   "description": "Luanti API TypeScript definitions for TypeScriptToLua",
   "scripts": {
     "pub": "npm publish --access public"
