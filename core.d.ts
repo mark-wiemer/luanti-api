@@ -302,11 +302,51 @@ export interface LuantiGlobal {
 
   // #region Mod channels
   //* https://api.luanti.org/core-namespace-reference/#mod-channels
+  // todo mod_channel_join
+  // #endregion Mod channels
+
+  // #region Inventory
+  //* https://api.luanti.org/core-namespace-reference/#inventory
   // todo get_inventory
   // todo create_detached_inventory
   // todo remove_detached_inventory
   // todo do_item_eat
-  // #endregion Mod channels
+  // #endregion Inventory
+
+  // #region Formspec
+  //* https://api.luanti.org/core-namespace-reference/#formspec
+  // todo show_formspec
+  // todo close_formspec
+  // todo formspec_escape
+  // todo hypertext_escape
+  // todo explode_table_event
+  // todo explode_textlist_event
+  // todo explode_scrollbar_event
+  // todo show_death_screen
+  // #endregion Formspec
+
+  // #region Item handling
+  //* https://api.luanti.org/core-namespace-reference/#item-handling
+  // todo inventorycube
+  // todo get_pointed_thing_position
+  // todo dir_to_facedir
+  // todo facedir_to_dir
+  // todo dir_to_fourdir
+  // todo fourdir_to_dir
+  // todo dir_to_wallmounted
+  // todo wallmounted_to_dir
+  // todo dir_to_yaw
+  // todo yaw_to_dir
+  // todo is_colored_paramtype
+  // todo strip_param2_color
+  // todo get_node_drops
+  // todo get_craft_result
+  // todo get_craft_recipe
+  // todo get_all_craft_recipes
+  // todo handle_node_drops
+  // todo itemstring_with_palette
+  // todo itemstring_with_color
+  // #endregion Item handling
 
   //* Unorganized definitions
   request_insecure_environment(this: void): LtInsecEnv;
