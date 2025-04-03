@@ -348,6 +348,35 @@ export interface LuantiGlobal {
   // todo itemstring_with_color
   // #endregion Item handling
 
+  // #region Rollback
+  //* https://api.luanti.org/core-namespace-reference/#rollback
+  // todo rollback_get_node_actions
+  // todo rollback_revert_actions_by
+  // #endregion Rollback
+
+  // #region on_place and on_drop defaults
+  // https://api.luanti.org/core-namespace-reference/#defaults-for-the-on_place-and-on_drop-item-definition-functions
+  // todo item_place_node
+  // todo item_place_object
+  // todo item_place
+  // todo item_pickup
+  // todo item_drop
+  // todo item_eat
+  // #endregion on_place and on_drop defaults
+
+  // #region on_punch and on_dig defaults
+  // https://api.luanti.org/core-namespace-reference/#defaults-for-the-on_punch-and-on_dig-node-definition-callbacks
+  // todo node_punch
+  // todo node_dig
+  // #endregion on_punch and on_dig defaults
+
+  // #region Sounds
+  //* https://api.luanti.org/core-namespace-reference/#sounds
+  // todo sound_play
+  // todo sound_stop
+  // todo sound_fade
+  // #endregion Sounds
+
   //* Unorganized definitions
   request_insecure_environment(this: void): LtInsecEnv;
   after(this: void, time: number, func: () => void): void;
