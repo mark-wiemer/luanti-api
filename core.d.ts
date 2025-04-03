@@ -530,6 +530,43 @@ export interface LuantiGlobal {
   // todo registered_chatcommands
   // todo registered_privileges
   // #endregion Global tables
+
+  // #region Registered callback tables
+  //* https://api.luanti.org/core-namespace-reference/#registered-callback-tables
+  // todo registered_on_chat_messages
+  // todo registered_on_chatcommands
+  // todo registered_globalsteps
+  // todo registered_on_punchnodes
+  // todo registered_on_placenodes
+  // todo registered_on_dignodes
+  // todo registered_on_generateds
+  // todo registered_on_newplayers
+  // todo registered_on_dieplayers
+  // todo registered_on_respawnplayers
+  // todo registered_on_prejoinplayers
+  // todo registered_on_joinplayers
+  // todo registered_on_leaveplayers
+  // todo registered_on_player_receive_fields
+  // todo registered_on_cheats
+  // todo registered_on_crafts
+  // todo registered_craft_predicts
+  // todo registered_on_item_eats
+  // todo registered_on_item_pickups
+  // todo registered_on_punchplayers
+  // todo registered_on_authplayers
+  // todo registered_on_player_inventory_actions
+  // todo registered_allow_player_inventory_actions
+  // todo registered_on_rightclickplayers
+  // todo registered_on_mods_loaded
+  // todo registered_on_shutdown
+  // todo registered_on_protection_violation
+  // todo registered_on_priv_grant
+  // todo registered_on_priv_revoke
+  // todo registered_can_bypass_userlimit
+  // todo registered_on_modchannel_message
+  // todo registered_on_liquid_transformed
+  // todo registered_on_mapblocks_changed
+  // #endregion Registered callback tables
 }
 
 declare global {
