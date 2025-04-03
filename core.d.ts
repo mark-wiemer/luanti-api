@@ -439,8 +439,67 @@ export interface LuantiGlobal {
   delete_particlespawner(this: void, id: number, playername?: string): void;
   // #endregion Particles
 
-  //* Unorganized definitions
+  // #region Schematics
+  //* https://api.luanti.org/core-namespace-reference/#schematics
+  // todo create_schematic
+  // todo place_schematic
+  // todo place_schematic_on_vmanip
+  // todo serialize_schematic
+  // todo read_schematic
+  // #endregion Schematics
+
+  // #region HTTP Requests
+  //* https://api.luanti.org/core-namespace-reference/#http-requests
+  // todo request_http_api
+  // #endregion HTTP Requests
+
+  // #region Storage API
+  //* https://api.luanti.org/core-namespace-reference/#storage-api
+  // todo get_mod_storage
+  // #endregion Storage API
+
+  // #region Misc.
+  //* https://api.luanti.org/core-namespace-reference/#misc
+  // todo get_connected_players
+  // todo is_player
+  // todo player_exists
+  // todo is_valid_player_name
+  // todo hud_replace_builtin
+  // todo parse_relative_number
+  // todo send_join_message
+  // todo send_leave_message
+  // todo hash_node_position
+  // todo get_position_from_hash
+  // todo get_item_group
+  // todo get_node_group
+  // todo raillike_group
+  // todo get_content_id
+  // todo get_name_from_content_id
+  // todo parse_json
+  // todo write_json
+  // todo serialize
+  // todo deserialize
+  // todo compress
+  // todo decompress
+  // todo rgba
+  // todo encode_base64
+  // todo decode_base64
+  // todo is_protected
+  // todo record_protection_violation
+  // todo is_creative_enabled
+  // todo is_area_protected
+  // todo rotate_and_place
+  // todo rotate_node
+  // todo calculate_knockback
+  // todo forceload_block
+  // todo forceload_free_block
+  // todo compare_block_status
   request_insecure_environment(this: void): LtInsecEnv;
+  // todo global_exists
+  // todo register_portable_metatable
+  // #endregion Misc.
+
+  //* Unorganized definitions
   raycast(
     this: void,
     from: LtVec3,
