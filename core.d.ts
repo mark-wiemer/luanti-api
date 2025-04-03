@@ -398,8 +398,46 @@ export interface LuantiGlobal {
 
   // #region Mapgen environment
   //* https://api.luanti.org/core-namespace-reference/#mapgen-environment
-
+  // todo register_mapgen_script
+  // todo register_on_generated
+  // todo save_gen_notify
   // #endregion Mapgen environment
+
+  // #region Server
+  //* https://api.luanti.org/core-namespace-reference/#server
+  // todo request_shutdown
+  // todo cancel_shutdown_requests
+  // todo get_server_status
+  // todo get_server_uptime
+  // todo get_server_max_lag
+  // todo remove_player
+  // todo remove_player_auth
+  // todo dynamic_add_media
+  // #endregion Server
+
+  // #region IPC
+  //* https://api.luanti.org/core-namespace-reference/#ipc
+  // todo ipc_get
+  // todo ipc_cas
+  // todo ipc_poll
+  // #endregion IPC
+
+  // #region Bans
+  //* https://api.luanti.org/core-namespace-reference/#bans
+  // todo get_ban_list
+  // todo get_ban_description
+  // todo ban_player
+  // todo unban_player_or_ip
+  // todo kick_player
+  // todo disconnect_player
+  // #endregion Bans
+
+  // #region Particles
+  //* https://api.luanti.org/core-namespace-reference/#particles
+  add_particle(this: void, partDef: LtParticleDef): number;
+  add_particlespawner(this: void, partSpawnDef: LtParticleSpawnerDef): number;
+  delete_particlespawner(this: void, id: number, playername?: string): void;
+  // #endregion Particles
 
   //* Unorganized definitions
   request_insecure_environment(this: void): LtInsecEnv;
@@ -412,9 +450,6 @@ export interface LuantiGlobal {
   ): Raycast;
   luaentities: { [key: string]: LtObjRef };
   object_refs: { [key: string]: LtObjRef };
-  add_particle(this: void, partDef: LtParticleDef): number;
-  add_particlespawner(this: void, partSpawnDef: LtParticleSpawnerDef): number;
-  delete_particlespawner(this: void, id: number, playername?: string): void;
 }
 
 declare global {
