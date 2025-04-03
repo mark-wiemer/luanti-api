@@ -300,6 +300,14 @@ export interface LuantiGlobal {
   // todo get_spawn_level
   // #endregion Environment access
 
+  // #region Mod channels
+  //* https://api.luanti.org/core-namespace-reference/#mod-channels
+  // todo get_inventory
+  // todo create_detached_inventory
+  // todo remove_detached_inventory
+  // todo do_item_eat
+  // #endregion Mod channels
+
   //* Unorganized definitions
   request_insecure_environment(this: void): LtInsecEnv;
   after(this: void, time: number, func: () => void): void;
