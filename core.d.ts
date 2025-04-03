@@ -284,7 +284,15 @@ export interface LuantiGlobal {
   // todo emerge_area
   // todo delete_area
   // todo line_of_sight
-  // todo raycast
+  raycast(
+    this: void,
+    from: LtVec3,
+    to: LtVec3,
+    objects?: boolean,
+    liquids?: boolean
+  ): Raycast;
+  luaentities: { [key: string]: LtObjRef };
+  object_refs: { [key: string]: LtObjRef };
   // todo find_path
   // todo spawn_tree
   // todo spawn_tree_on_vmanip
@@ -499,16 +507,29 @@ export interface LuantiGlobal {
   // todo register_portable_metatable
   // #endregion Misc.
 
-  //* Unorganized definitions
-  raycast(
-    this: void,
-    from: LtVec3,
-    to: LtVec3,
-    objects?: boolean,
-    liquids?: boolean
-  ): Raycast;
-  luaentities: { [key: string]: LtObjRef };
-  object_refs: { [key: string]: LtObjRef };
+  // #region Global objects
+  //* https://api.luanti.org/core-namespace-reference/#global-objects
+  // todo env
+  // #endregion Global objects
+
+  // #region Global tables
+  //* https://api.luanti.org/core-namespace-reference/#global-tables
+  // todo registered_items
+  // todo registered_nodes
+  // todo registered_craftitems
+  // todo registered_tools
+  // todo registered_entities
+  // todo object_refs
+  // todo luaentities
+  // todo registered_abms
+  // todo registered_lbms
+  // todo registered_aliases
+  // todo registered_ores
+  // todo registered_biomes
+  // todo registered_decorations
+  // todo registered_chatcommands
+  // todo registered_privileges
+  // #endregion Global tables
 }
 
 declare global {
