@@ -46,6 +46,7 @@ export interface ChatCommandDef {
 }
 
 /** https://api.luanti.org/core-namespace-reference/ */
+// Region titles come from the API docs
 export interface LuantiGlobal {
   // #region Utilities
   //* https://api.luanti.org/core-namespace-reference/#utilities
@@ -187,25 +188,121 @@ export interface LuantiGlobal {
   // todo register_on_modchannel_message
   // todo register_on_liquid_transformed
   // todo register_on_mapblocks_changed
-  // #endregrion Global callback registration functions
+  // #endregion Global callback registration functions
 
-  // todo https://api.luanti.org/core-namespace-reference/#setting-related and below
+  // #region Setting-related
+  //* https://api.luanti.org/core-namespace-reference/#setting-related
+  // todo string_to_privs
+  // todo privs_to_string
+  // todo get_player_privs
+  // todo check_player_privs
+  // todo check_password_entry
+  // todo get_password_hash
+  // todo get_player_ip
+  // todo get_auth_handler
+  // todo notify_authentication_modified
+  // todo set_player_password
+  // todo set_player_privs
+  // todo change_player_privs
+  // todo auth_reload
+  // #endregion Setting-related
 
-  //* Unorganized definitions
-  chat_send_player(this: void, playerName: string, message: string): void;
+  // #region Chat
+  //* https://api.luanti.org/core-namespace-reference/#chat
   chat_send_all(this: void, message: string): void;
-  request_insecure_environment(this: void): LtInsecEnv;
+  chat_send_player(this: void, playerName: string, message: string): void;
+  // todo format_chat_message
+  // #endregion Chat
+
+  // #region Environment access
+  //* https://api.luanti.org/core-namespace-reference/#environment-access
+  // todo set_node
+  // todo add_node
+  // todo bulk_set_node
+  // todo swap_node
+  // todo bulk_swap_node
+  // todo remove_node
+  get_node(this: void, pos: LtVec3): LtNode;
+  get_node_or_nil(this: void, pos: LtVec3): LtNode | undefined;
+  // todo get_node_light
+  // todo get_natural_light
+  // todo get_artificial_light
+  // todo place_node
+  // todo dig_node
+  // todo punch_node
+  // todo spawn_falling_node
+  // todo find_nodes_with_meta
+  // todo get_meta
+  // todo get_node_timer
   add_entity(
     this: void,
     pos: LtVec3,
     name: string,
     staticdata?: LtEntityStaticData
   ): LtObjRef;
+  // todo add_item
   get_player_by_name(this: void, name: string): LtPlayer | undefined;
-  get_node_or_nil(this: void, pos: LtVec3): LtNode | undefined;
-  get_node(this: void, pos: LtVec3): LtNode;
-  after(this: void, time: number, func: () => void): void;
+  get_objects_inside_radius(
+    this: void,
+    pos: LtVec3,
+    radius: number
+  ): LtObjRef[];
+  // todo objects_inside_radius
+  // todo get_objects_in_area
+  // todo objects_in_area
+  // todo set_timeofday
+  // todo get_timeofday
   get_gametime(this: void): number;
+  // todo get_day_count
+  // todo find_node_near
+  // todo find_nodes_in_area
+  // todo find_nodes_in_area_under_air
+  // todo get_perlin (not the deprecated one)
+  // todo get_voxel_manip
+  // todo set_gen_notify
+  // todo get_gen_notify
+  // todo get_decoration_id
+  // todo get_mapgen_object
+  // todo get_heat
+  // todo get_humidity
+  // todo get_biome_data
+  // todo get_biome_id
+  // todo get_biome_name
+  // todo get_mapgen_params
+  // todo set_mapgen_params
+  // todo get_mapgen_edges
+  // todo get_mapgen_setting
+  // todo get_mapgen_setting_noiseparams
+  // todo set_mapgen_setting
+  // todo set_mapgen_setting_noiseparams
+  // todo set_noiseparams
+  // todo get_noiseparams
+  // todo generate_ores
+  // todo generate_decorations
+  // todo clear_objects
+  // todo load_area
+  // todo emerge_area
+  // todo delete_area
+  // todo line_of_sight
+  // todo raycast
+  // todo find_path
+  // todo spawn_tree
+  // todo spawn_tree_on_vmanip
+  // todo transforming_liquid_add
+  // todo get_node_max_level
+  // todo get_node_level
+  // todo set_node_level
+  // todo add_node_level
+  // todo get_node_boxes
+  // todo fix_light
+  // todo check_single_for_falling
+  // todo check_for_falling
+  // todo get_spawn_level
+  // #endregion Environment access
+
+  //* Unorganized definitions
+  request_insecure_environment(this: void): LtInsecEnv;
+  after(this: void, time: number, func: () => void): void;
   raycast(
     this: void,
     from: LtVec3,
@@ -218,11 +315,6 @@ export interface LuantiGlobal {
   add_particle(this: void, partDef: LtParticleDef): number;
   add_particlespawner(this: void, partSpawnDef: LtParticleSpawnerDef): number;
   delete_particlespawner(this: void, id: number, playername?: string): void;
-  get_objects_inside_radius(
-    this: void,
-    pos: LtVec3,
-    radius: number
-  ): LtObjRef[];
 }
 
 declare global {
