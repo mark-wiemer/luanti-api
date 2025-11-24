@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/mark-wiemer/luanti-api#readme",
   "devDependencies": {
-    "typescript-to-lua": "^1.14.0",
-    "lua-types": "^2.13.1"
+    "lua-types": "^2.13.1",
+    "prettier": "^3.6.2",
+    "typescript-to-lua": "^1.14.0"
   }
 }
