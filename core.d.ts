@@ -45,8 +45,14 @@ export interface ChatCommandDef {
   func: (name: string, param: string) => LuaMultiReturn<[boolean, string]>;
 }
 
-/** https://api.luanti.org/core-namespace-reference/ */
+/**
+ * https://github.com/luanti-org/luanti/blob/0062f82fc/doc/lua_api.md?plain=1#L5693-L7994
+ * https://api.luanti.org/core-namespace-reference/
+ */
 // Region titles come from the API docs
+// To compare against future versions, use
+// git diff 0062f82fc..HEAD -- doc/lua_api.md > out.diff
+// Ignore everything outside of core namespace reference lines marked above
 export interface LuantiGlobal {
   // #region Utilities
   //* https://api.luanti.org/core-namespace-reference/#utilities
@@ -62,6 +68,7 @@ export interface LuantiGlobal {
   // todo get_player_information
   // todo protocol_versions
   // todo get_player_window_information
+  // todo path_exists
   // todo mkdir
   // todo rmdir
   // todo cpdir
