@@ -1,5 +1,8 @@
 # Luanti API
 
+> [!IMPORTANT]
+> This project has been moved into [my hello-hello monorepo](https://github.com/mark-wiemer/hello-hello/tree/main/packages/luanti/luanti-ts-api), it's not abandoned!
+
 Type definitions for using the Luanti ([formerly Minetest](https://blog.luanti.org/2024/10/13/Introducing-Our-New-Name/)) API via TypeScriptToLua
 
 ## Usage
